@@ -6,1523 +6,302 @@
 <title>Bigger and Better 2026 — Planejamento</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --red: #E31837;
-  --red-dark: #B8132D;
-  --dark: #0A0A0A;
-  --dark-card: #111111;
-  --dark-card-hover: #1A1A1A;
-  --border: #222222;
-  --text: #E8E8E8;
-  --text-muted: #888888;
-  --text-dim: #555555;
-  --accent-blue: #2196F3;
-  --accent-green: #4CAF50;
-  --accent-amber: #FF9800;
-  --accent-purple: #9C27B0;
-  --accent-cyan: #00BCD4;
-  --accent-pink: #E91E63;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  background: var(--dark);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  overflow-x: hidden;
-}
-
-/* --- HERO --- */
-.hero {
-  position: relative;
-  padding: 60px 40px 50px;
-  background: linear-gradient(135deg, #0A0A0A 0%, #1a0a0e 50%, #0A0A0A 100%);
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -100px; right: -100px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(227,24,55,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-badge {
-  display: inline-block;
-  background: var(--red);
-  color: #fff;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 13px;
-  letter-spacing: 3px;
-  padding: 6px 16px;
-  margin-bottom: 20px;
-}
-.hero h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(48px, 7vw, 80px);
-  letter-spacing: 2px;
-  line-height: 0.95;
-  color: #fff;
-}
-.hero h1 span { color: var(--red); }
-.hero-meta {
-  margin-top: 20px;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-.hero-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-muted);
-  font-size: 14px;
-}
-.hero-meta-item svg { flex-shrink:0; }
-
-/* --- NAV TABS --- */
-.nav-tabs {
-  display: flex;
-  gap: 0;
-  background: var(--dark-card);
-  border-bottom: 1px solid var(--border);
-  overflow-x: auto;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.nav-tab {
-  padding: 16px 24px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: var(--text-muted);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  white-space: nowrap;
-  transition: all 0.2s;
-  background: none;
-  border-top: none; border-left: none; border-right: none;
-  font-family: inherit;
-}
-.nav-tab:hover { color: var(--text); background: var(--dark-card-hover); }
-.nav-tab.active { color: var(--red); border-bottom-color: var(--red); }
-
-/* --- SECTIONS --- */
-.section { display: none; padding: 40px; }
-.section.active { display: block; }
-.section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 36px;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-.section-subtitle {
-  color: var(--text-muted);
-  font-size: 14px;
-  margin-bottom: 32px;
-  max-width: 700px;
-  line-height: 1.6;
-}
-
-/* --- CARDS GRID --- */
-.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 32px; }
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px; }
-.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
-
-.card {
-  background: var(--dark-card);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  padding: 24px;
-  transition: border-color 0.2s;
-}
-.card:hover { border-color: #333; }
-.card-label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-}
-.card-value {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 32px;
-  color: #fff;
-}
-.card-detail { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
-
-/* --- TIMELINE --- */
-.timeline { position: relative; margin: 20px 0 40px 20px; padding-left: 30px; border-left: 2px solid var(--border); }
-.timeline-item {
-  position: relative;
-  padding-bottom: 32px;
-}
-.timeline-item:last-child { padding-bottom: 0; }
-.timeline-dot {
-  position: absolute;
-  left: -39px;
-  top: 4px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--dark);
-  border: 2px solid var(--red);
-}
-.timeline-dot.done { background: var(--red); }
-.timeline-date {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-.timeline-title {
-  font-weight: 700;
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.timeline-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-/* --- CHECKLIST --- */
-.checklist { list-style: none; }
-.checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-  line-height: 1.5;
-}
-.checklist li:last-child { border-bottom: none; }
-.check-box {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--border);
-  border-radius: 2px;
-  margin-top: 1px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-}
-.check-box:hover { border-color: var(--red); }
-.check-box.checked {
-  background: var(--red);
-  border-color: var(--red);
-}
-.check-box.checked::after {
-  content: '✓';
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-}
-.check-text.done { text-decoration: line-through; color: var(--text-dim); }
-
-/* --- TAG --- */
-.tag {
-  display: inline-block;
-  padding: 3px 10px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  border-radius: 2px;
-  margin-right: 6px;
-}
-.tag-red { background: rgba(227,24,55,0.15); color: var(--red); }
-.tag-blue { background: rgba(33,150,243,0.15); color: var(--accent-blue); }
-.tag-green { background: rgba(76,175,80,0.15); color: var(--accent-green); }
-.tag-amber { background: rgba(255,152,0,0.15); color: var(--accent-amber); }
-.tag-purple { background: rgba(156,39,176,0.15); color: var(--accent-purple); }
-.tag-cyan { background: rgba(0,188,212,0.15); color: var(--accent-cyan); }
-.tag-pink { background: rgba(233,30,99,0.15); color: var(--accent-pink); }
-
-/* --- TABLE --- */
-.table-wrap { overflow-x: auto; margin-bottom: 32px; -webkit-overflow-scrolling: touch; }
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-th {
-  text-align: left;
-  padding: 12px 16px;
-  background: var(--dark-card);
-  border-bottom: 2px solid var(--red);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-td {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-  vertical-align: top;
-}
-tr:hover td { background: rgba(255,255,255,0.02); }
-
-/* --- PHASE BANNER --- */
-.phase-banner {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
-  background: var(--dark-card);
-  border-left: 4px solid var(--red);
-  margin-bottom: 24px;
-}
-.phase-number {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 42px;
-  color: var(--red);
-  line-height: 1;
-}
-.phase-info-title {
-  font-weight: 700;
-  font-size: 18px;
-  color: #fff;
-}
-.phase-info-range {
-  font-size: 12px;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-top: 2px;
-}
-
-/* --- SPORT CARD --- */
-.sport-card {
-  background: var(--dark-card);
-  border: 1px solid var(--border);
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-}
-.sport-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-}
-.sport-card.aqua::after { background: var(--accent-cyan); }
-.sport-card.land::after { background: var(--accent-green); }
-.sport-card.indoor::after { background: var(--accent-amber); }
-.sport-icon { font-size: 28px; margin-bottom: 12px; }
-.sport-name { font-weight: 700; font-size: 16px; color: #fff; margin-bottom: 6px; }
-.sport-detail { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-
-/* --- INSIGHT BOX --- */
-.insight-box {
-  background: rgba(227,24,55,0.05);
-  border: 1px solid rgba(227,24,55,0.2);
-  padding: 20px 24px;
-  margin-bottom: 24px;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-.insight-box .icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-.insight-box .text { font-size: 14px; color: var(--text); line-height: 1.6; }
-.insight-box .text strong { color: var(--red); }
-
-/* --- BACKLOG --- */
-.backlog-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
-.filter-btn {
-  padding:6px 14px; font-size:12px; font-weight:600; border:1px solid var(--border);
-  background:var(--dark-card); color:var(--text-muted); cursor:pointer; font-family:inherit;
-  transition:all 0.15s; border-radius:2px;
-}
-.filter-btn:hover { border-color:#444; color:var(--text); }
-.filter-btn.active { border-color:var(--red); color:var(--red); background:rgba(227,24,55,0.08); }
-.backlog-count { font-size:13px; color:var(--text-dim); margin-bottom:16px; }
-.priority-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
-.priority-alta { background:#E31837; }
-.priority-media { background:#FF9800; }
-.priority-baixa { background:#4CAF50; }
-
-/* --- GANTT --- */
-.gantt-container { overflow-x:auto; padding-bottom:20px; }
-.gantt-table { border-collapse:collapse; min-width:1100px; width:100%; }
-.gantt-table th {
-  padding:8px 6px; font-size:10px; letter-spacing:1px; text-transform:uppercase;
-  color:var(--text-dim); font-weight:600; border-bottom:1px solid var(--border);
-  text-align:center; position:sticky; top:0; background:var(--dark);
-}
-.gantt-table th.task-header { text-align:left; min-width:260px; }
-.gantt-table td { padding:0; border-bottom:1px solid rgba(255,255,255,0.03); }
-.gantt-table td.task-cell {
-  padding:10px 12px; font-size:13px; color:var(--text); white-space:nowrap;
-  border-right:1px solid var(--border); position:sticky; left:0; background:var(--dark);
-}
-.gantt-cell {
-  position:relative; height:36px;
-  border-right:1px solid rgba(255,255,255,0.03);
-  overflow:visible; min-width:80px;
-}
-.gantt-bar {
-  position:absolute; top:8px; height:20px; border-radius:2px;
-  min-width:4px; opacity:0.85;
-}
-.gantt-bar:hover { opacity:1; }
-.gantt-bar-label {
-  position:absolute; top:50%; transform:translateY(-50%); left:8px;
-  font-size:10px; font-weight:600; color:#fff; white-space:nowrap;
-  text-shadow:0 1px 2px rgba(0,0,0,0.5);
-}
-.gantt-month-now { background:rgba(227,24,55,0.06); }
-.gantt-legend { display:flex; gap:20px; margin-top:16px; flex-wrap:wrap; }
-.gantt-legend-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-muted); }
-.gantt-legend-color { width:14px; height:10px; border-radius:1px; }
-
-/* --- FORECAST --- */
-.forecast-scenario-tabs { display:flex; gap:0; margin-bottom:24px; }
-.scenario-tab {
-  padding:12px 24px; font-size:13px; font-weight:600; cursor:pointer;
-  background:var(--dark-card); border:1px solid var(--border); color:var(--text-muted);
-  font-family:inherit; transition:all 0.15s;
-}
-.scenario-tab:first-child { border-radius:2px 0 0 2px; }
-.scenario-tab:last-child { border-radius:0 2px 2px 0; }
-.scenario-tab.active { background:var(--red); border-color:var(--red); color:#fff; }
-.scenario-tab:hover:not(.active) { border-color:#444; color:var(--text); }
-.forecast-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); font-size:14px; }
-.forecast-row.header { font-weight:700; color:var(--red); font-size:13px; letter-spacing:1px; text-transform:uppercase; border-bottom:2px solid var(--red); padding:12px 0; }
-.forecast-row.total { font-weight:700; color:#fff; border-top:2px solid var(--border); border-bottom:none; padding:14px 0; font-size:15px; }
-.forecast-row.subtotal { font-weight:600; color:var(--text); background:rgba(255,255,255,0.02); padding:12px 8px; margin:0 -8px; }
-.forecast-row .label { color:var(--text-muted); }
-.forecast-row .value { font-weight:600; color:var(--text); font-variant-numeric:tabular-nums; }
-.forecast-row.total .value { color:var(--red); }
-.forecast-row.positive .value { color:var(--accent-green); }
-.forecast-row.negative .value { color:var(--red); }
-.forecast-kpi { text-align:center; }
-.forecast-kpi .num { font-family:'Bebas Neue',sans-serif; font-size:36px; color:#fff; }
-.forecast-kpi .lbl { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-dim); margin-top:2px; }
-.forecast-divider { height:1px; background:var(--border); margin:32px 0; }
-.forecast-chart-bar { height:28px; border-radius:2px; position:relative; margin-bottom:6px; }
-.forecast-chart-bar .bar-label { position:absolute; left:10px; top:50%; transform:translateY(-50%); font-size:11px; font-weight:600; color:#fff; }
-.forecast-chart-bar .bar-value { position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:11px; font-weight:600; color:#fff; }
-
-/* --- RESPONSIVE --- */
-.nav-tabs { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.nav-tabs::-webkit-scrollbar { display: none; }
-
-@media (max-width: 768px) {
-  .hero { padding: 40px 20px 30px; }
-  .hero h1 { font-size: 42px; }
-  .section { padding: 24px 16px; }
-  .section-title { font-size: 28px; }
-  .section-subtitle { font-size: 13px; }
-  .hero-meta { flex-direction: column; gap: 12px; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .nav-tab { padding: 14px 16px; font-size: 12px; }
-  .gantt-table th.task-header { min-width:180px; }
-
-  /* Forecast mobile */
-  .forecast-scenario-tabs { flex-wrap: wrap; gap: 6px; }
-  .scenario-tab { padding: 10px 16px; font-size: 12px; flex: 1; text-align: center; border-radius: 2px !important; }
-  .forecast-row { flex-wrap: wrap; gap: 2px; font-size: 13px; }
-  .forecast-row .label { flex: 1 1 100%; font-size: 12px; }
-  .forecast-row .value { font-size: 14px; }
-  .forecast-kpi .num { font-size: 24px; }
-  .forecast-kpi .lbl { font-size: 10px; }
-  .forecast-chart-bar .bar-value { font-size: 9px; right: 4px; }
-  .insight-box { flex-direction: column; gap: 8px; }
-
-  /* Cards */
-  .card { padding: 18px; }
-  .card-value { font-size: 26px; }
-
-  /* Timeline */
-  .timeline { margin-left: 10px; padding-left: 20px; }
-
-  /* Phase banner */
-  .phase-banner { flex-direction: column; gap: 8px; padding: 16px; }
-  .phase-number { font-size: 32px; }
-
-  /* Sport cards */
-  .sport-card { padding: 18px; }
-}
+:root{--red:#E31837;--red2:#B8132D;--dk:#0A0A0A;--dk2:#111;--dk3:#1A1A1A;--brd:#222;--tx:#E8E8E8;--mt:#888;--dm:#555;--bl:#2196F3;--gr:#4CAF50;--am:#FF9800;--pu:#9C27B0;--cy:#00BCD4;--pk:#E91E63;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dk);color:var(--tx);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+.hero{position:relative;padding:48px 40px 40px;background:linear-gradient(135deg,#0A0A0A,#1a0a0e,#0A0A0A);border-bottom:1px solid var(--brd);}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(227,24,55,.08),transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-block;background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;padding:5px 14px;margin-bottom:16px;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,72px);letter-spacing:2px;line-height:.95;color:#fff;}
+.hero h1 span{color:var(--red);}
+.hero-meta{margin-top:16px;display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--mt);}
+.nav{display:flex;background:var(--dk2);border-bottom:1px solid var(--brd);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav button{padding:15px 28px;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--mt);cursor:pointer;border:none;border-bottom:2px solid transparent;white-space:nowrap;background:none;font-family:inherit;transition:all .2s;}
+.nav button:hover{color:var(--tx);background:var(--dk3);}.nav button.on{color:var(--red);border-bottom-color:var(--red);}
+.sn{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap;}
+.sn button{padding:8px 18px;font-size:12px;font-weight:600;border:1px solid var(--brd);background:var(--dk2);color:var(--mt);cursor:pointer;font-family:inherit;border-radius:2px;transition:all .15s;}
+.sn button:hover{border-color:#444;color:var(--tx);}.sn button.on{border-color:var(--red);color:var(--red);background:rgba(227,24,55,.08);}
+.sec{display:none;padding:40px;}.sec.on{display:block;}
+.st{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;margin-bottom:6px;}
+.ss{color:var(--mt);font-size:13px;margin-bottom:28px;max-width:750px;line-height:1.6;}
+.sub{display:none;}.sub.on{display:block;}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin-bottom:28px;}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:28px;}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:28px;}
+.cd{background:var(--dk2);border:1px solid var(--brd);padding:22px;border-radius:2px;}
+.cd-l{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dm);margin-bottom:6px;}
+.cd-v{font-family:'Bebas Neue',sans-serif;font-size:30px;color:#fff;}.cd-d{font-size:12px;color:var(--mt);margin-top:4px;}
+.t{display:inline-block;padding:3px 9px;font-size:11px;font-weight:600;letter-spacing:.5px;border-radius:2px;margin-right:4px;}
+.t-r{background:rgba(227,24,55,.15);color:var(--red);}.t-b{background:rgba(33,150,243,.15);color:var(--bl);}
+.t-g{background:rgba(76,175,80,.15);color:var(--gr);}.t-a{background:rgba(255,152,0,.15);color:var(--am);}
+.t-p{background:rgba(156,39,176,.15);color:var(--pu);}.t-c{background:rgba(0,188,212,.15);color:var(--cy);}
+.t-pk{background:rgba(233,30,99,.15);color:var(--pk);}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:28px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;padding:10px 14px;background:var(--dk2);border-bottom:2px solid var(--red);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mt);font-weight:600;}
+td{padding:12px 14px;border-bottom:1px solid var(--brd);vertical-align:top;}
+tr:hover td{background:rgba(255,255,255,.02);}
+.ins{background:rgba(227,24,55,.05);border:1px solid rgba(227,24,55,.2);padding:18px 22px;margin-bottom:22px;display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6;border-radius:2px;}.ins strong{color:var(--red);}
+.tl{position:relative;margin:16px 0 32px 16px;padding-left:28px;border-left:2px solid var(--brd);}
+.tl-i{padding-bottom:28px;position:relative;}.tl-i:last-child{padding-bottom:0;}
+.tl-dot{position:absolute;left:-37px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--dk);border:2px solid var(--red);}
+.tl-dt{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:4px;}
+.tl-tt{font-weight:700;font-size:15px;color:#fff;margin-bottom:4px;}
+.tl-ds{font-size:12px;color:var(--mt);line-height:1.6;}
+.ph{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--dk2);border-left:4px solid var(--red);margin-bottom:20px;}
+.ph-n{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--red);line-height:1;}
+.ph-t{font-weight:700;font-size:16px;color:#fff;}.ph-r{font-size:11px;color:var(--mt);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.sp{background:var(--dk2);border:1px solid var(--brd);padding:20px;position:relative;overflow:hidden;}
+.sp::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;}
+.sp.aq::after{background:var(--cy);}.sp.la::after{background:var(--gr);}.sp.ind::after{background:var(--am);}
+.sp-i{font-size:26px;margin-bottom:10px;}.sp-n{font-weight:700;font-size:15px;color:#fff;margin-bottom:4px;}.sp-d{font-size:12px;color:var(--mt);line-height:1.5;}
+.cl{list-style:none;}.cl li{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--brd);font-size:13px;line-height:1.5;}.cl li:last-child{border-bottom:none;}
+.ck{flex-shrink:0;width:18px;height:18px;border:2px solid var(--brd);border-radius:2px;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.ck:hover{border-color:var(--red);}.ck.on{background:var(--red);border-color:var(--red);}.ck.on::after{content:'✓';color:#fff;font-size:11px;font-weight:700;}.done{text-decoration:line-through;color:var(--dm);}
+.gantt-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.gantt-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:11px;color:var(--mt);}
+.gantt-legend span{display:flex;align-items:center;gap:5px;}.gantt-legend i{width:12px;height:8px;border-radius:1px;display:inline-block;}
+.fc-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--brd);font-size:13px;gap:8px;}
+.fc-row.hdr{font-weight:700;color:var(--red);font-size:11px;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid var(--red);padding:10px 0;}
+.fc-row.tot{font-weight:700;color:#fff;border-top:2px solid var(--brd);border-bottom:none;padding:12px 0;font-size:14px;}
+.fc-row.stot{font-weight:600;background:rgba(255,255,255,.02);padding:10px 6px;margin:0 -6px;}
+.fc-row .lb{color:var(--mt);flex:1;min-width:0;}.fc-row .vl{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.fc-row.pos .vl{color:var(--gr);}.fc-row.neg .vl{color:var(--red);}
+.fc-kpi{text-align:center;}.fc-kpi .n{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#fff;}.fc-kpi .l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dm);margin-top:2px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
+.bar-lbl{width:90px;font-size:11px;color:var(--mt);text-align:right;flex-shrink:0;}
+.bar-trk{flex:1;height:24px;}.bar-fill{height:100%;border-radius:2px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:10px;font-weight:600;color:#fff;min-width:40px;}
+.calc-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:24px;}
+.calc-f label{display:block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--dm);margin-bottom:4px;}
+.calc-f input{width:100%;padding:10px 12px;background:var(--dk);border:1px solid var(--brd);color:var(--tx);font-family:inherit;font-size:14px;border-radius:2px;outline:none;transition:border-color .15s;}
+.calc-f input:focus{border-color:var(--red);}
+.calc-f input[type=range]{padding:0;height:6px;-webkit-appearance:none;background:var(--brd);border:none;border-radius:3px;cursor:pointer;}
+.calc-f input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--red);cursor:pointer;}
+.calc-f input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--red);cursor:pointer;border:none;}
+.calc-f .rv{display:flex;justify-content:space-between;font-size:12px;color:var(--mt);margin-top:4px;}
+.calc-res{background:var(--dk2);border:2px solid var(--brd);padding:24px;border-radius:2px;}.calc-res.ok{border-color:var(--gr);}.calc-res.nok{border-color:var(--red);}
+@media(max-width:768px){.hero{padding:32px 16px 28px;}.hero h1{font-size:36px;}.sec{padding:20px 14px;}.st{font-size:26px;}.g2,.g3,.g4{grid-template-columns:1fr;}.nav button{padding:13px 16px;font-size:11px;}.sn{gap:4px;}.sn button{padding:7px 12px;font-size:11px;flex:1;text-align:center;}.fc-row{flex-wrap:wrap;font-size:12px;}.fc-row .lb{flex:1 1 60%;}.fc-kpi .n{font-size:22px;}.ins{flex-direction:column;gap:6px;}.ph{flex-direction:column;gap:6px;padding:14px;}.calc-g{grid-template-columns:1fr 1fr;}.hero-meta{flex-direction:column;gap:8px;}}
 </style>
 </head>
 <body>
+<div class="hero"><div class="hero-badge">PLANEJAMENTO EXECUTIVO</div><h1>BIGGER <span>&</span> BETTER<br>2026</h1><div class="hero-meta"><span>📅 Novembro 2026</span><span>📍 Clara Ibiúna Resort</span><span>🌊 Edição com Esportes Aquáticos</span></div></div>
+<div class="nav"><button class="on" onclick="tab('overview',this)">Overview</button><button onclick="tab('prog',this)">Programação</button><button onclick="tab('prod',this)">Produção</button><button onclick="tab('oper',this)">Operação</button><button onclick="tab('fin',this)">Financeiro</button></div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">PLANEJAMENTO EXECUTIVO</div>
-  <h1>BIGGER <span>&</span> BETTER<br>2026</h1>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="10" height="10" rx="1"/><path d="M3 7h10M6 2v4M10 2v4"/></svg>
-      Novembro 2026
-    </div>
-    <div class="hero-meta-item">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v12M2 8h12"/><circle cx="8" cy="8" r="6"/></svg>
-      Clara Ibiúna Resort
-    </div>
-    <div class="hero-meta-item">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 14l4-6 3 4 2-3 3 5"/></svg>
-      Edição com Esportes Aquáticos
-    </div>
-  </div>
-</div>
+<!-- OVERVIEW -->
+<div class="sec on" id="overview"><div class="st">Visão Geral</div><div class="ss">Parâmetros base 2026. Ref: 2025 com 353 check-ins, NPS 95,2%, CSAT 100%.</div>
+<div class="g4"><div class="cd"><div class="cd-l">Público</div><div class="cd-v">400+</div><div class="cd-d">+15% sobre 2025</div></div><div class="cd"><div class="cd-l">Duração</div><div class="cd-v">3 DIAS</div><div class="cd-d">+1 dia vs. 2025</div></div><div class="cd"><div class="cd-l">Local</div><div class="cd-v">CLARA RESORT</div><div class="cd-d">Ibiúna, SP</div></div><div class="cd"><div class="cd-l">Novidade</div><div class="cd-v">AQUÁTICOS</div><div class="cd-d">Esportes náuticos</div></div></div>
+<div class="ins"><span>💡</span><div><strong>Vantagem Novembro:</strong> 25-30°C em Ibiúna favorece aquáticos. Agosto tinha manhãs frias demais.</div></div>
+<div class="g2"><div class="cd"><div class="cd-l">Conteúdo</div><div style="font-size:13px;line-height:1.7;">Trilhas segmentadas. Workshops, mentorias e painéis C-level. Dia 1 e manhã do Dia 2.</div></div><div class="cd"><div class="cd-l">Integração & Esportes</div><div style="font-size:13px;line-height:1.7;">Tarde Dia 2 e Dia 3 dedicados a jogos, aquáticos e networking. Placar ao vivo.</div></div><div class="cd"><div class="cd-l">Precificação</div><div style="font-size:13px;line-height:1.7;">Lotes: Early → +10% → +20% → +30%. Pacotes premium.</div></div><div class="cd"><div class="cd-l">Operação</div><div style="font-size:13px;line-height:1.7;">Deadline D-15. Check-in escalonado. Turnos refeição.</div></div></div>
+<div class="st" style="font-size:26px;margin-top:36px;">Melhorias 2025 → 2026</div><div class="ss">Respostas diretas ao debriefing.</div>
+<div class="tw"><table style="min-width:700px;"><thead><tr><th style="width:30%;">Problema 2025</th><th style="width:35%;">Solução 2026</th><th>Área</th><th>Status</th></tr></thead><tbody>
+<tr><td>Conteúdo raso</td><td>Trilhas + workshops 90min + mentorias</td><td><span class="t t-p">Conteúdo</span></td><td><span class="t t-a">Planejar</span></td></tr>
+<tr><td>Sem informações antecipadas</td><td>Guia Participante D-15</td><td><span class="t t-b">Comunicação</span></td><td><span class="t t-a">Planejar</span></td></tr>
+<tr><td>Jogos desorganizados</td><td>Chaves D-15 · Arbitragem · Placar ao vivo</td><td><span class="t t-g">Esportes</span></td><td><span class="t t-a">Planejar</span></td></tr>
+<tr><td>Filas check-in/refeições</td><td>Escalonado 3 faixas · Turnos A/B</td><td><span class="t t-r">Logística</span></td><td><span class="t t-a">Planejar</span></td></tr>
+<tr><td>Vendas/trocas última hora</td><td>Deadline rígido D-15</td><td><span class="t t-r">Comercial</span></td><td><span class="t t-a">Planejar</span></td></tr>
+<tr><td>Bebida sem controle</td><td>Quota noites sociais apenas</td><td><span class="t t-pk">Social</span></td><td><span class="t t-a">Planejar</span></td></tr>
+<tr><td>Networking superficial</td><td>Rodadas obrigatórias · Speed networking</td><td><span class="t t-p">Conteúdo</span></td><td><span class="t t-a">Planejar</span></td></tr>
+<tr><td>Poucas opções esportes</td><td>6 aquáticas + 3 terra + 2 indoor</td><td><span class="t t-c">Aquáticos</span></td><td><span class="t t-a">Planejar</span></td></tr>
+<tr><td>Faltou 1 dia</td><td>Expandido para 3 dias</td><td><span class="t t-r">Estrutura</span></td><td><span class="t t-g">Definido</span></td></tr>
+</tbody></table></div></div>
 
-<!-- NAV -->
-<div class="nav-tabs">
-  <button class="nav-tab active" onclick="showTab('visao',this)">Visão Geral</button>
-  <button class="nav-tab" onclick="showTab('cronograma',this)">Cronograma</button>
-  <button class="nav-tab" onclick="showTab('programacao',this)">Programação</button>
-  <button class="nav-tab" onclick="showTab('esportes',this)">Esportes & Aquáticos</button>
-  <button class="nav-tab" onclick="showTab('logistica',this)">Logística</button>
-  <button class="nav-tab" onclick="showTab('comunicacao',this)">Comunicação</button>
-  <button class="nav-tab" onclick="showTab('melhorias',this)">Melhorias 2025→2026</button>
-  <button class="nav-tab" onclick="showTab('backlog',this)">Backlog Operacional</button>
-  <button class="nav-tab" onclick="showTab('gantt',this)">Gantt de Produção</button>
-  <button class="nav-tab" onclick="showTab('forecast',this)">Forecasting</button>
-</div>
+<!-- PROGRAMAÇÃO -->
+<div class="sec" id="prog"><div class="st">Programação & Esportes</div>
+<div class="sn"><button class="on" onclick="sw('prog','grade',this)">Grade 3 Dias</button><button onclick="sw('prog','esp',this)">Esportes & Aquáticos</button></div>
+<div class="sub on" id="prog-grade"><div class="ss">Conteúdo (Dia 1), integração (Dia 2), aquáticos + encerramento (Dia 3).</div>
+<div class="tw"><table style="min-width:800px;"><thead><tr><th style="width:100px;">Horário</th><th>Dia 1 — Conteúdo</th><th>Dia 2 — Integração</th><th>Dia 3 — Aquáticos</th></tr></thead><tbody>
+<tr><td><b>07:00–08:30</b></td><td><span class="t t-a">Check-in</span> Escalonado + kit</td><td><span class="t t-g">Café</span> Turno A</td><td><span class="t t-g">Café</span> Turno B</td></tr>
+<tr><td><b>08:30–09:00</b></td><td><span class="t t-g">Café</span> Café da manhã</td><td><span class="t t-g">Café</span> Turno B</td><td><span class="t t-c">Prep</span> Briefing aquáticos</td></tr>
+<tr><td><b>09:00–10:30</b></td><td><span class="t t-r">Palco</span> Abertura + Keynote</td><td><span class="t t-r">Palco</span> Painel C-Level</td><td><span class="t t-c">Aquático</span> Rodada 1</td></tr>
+<tr><td><b>10:30–12:00</b></td><td><span class="t t-p">Trilha</span> Workshops (3 salas)</td><td><span class="t t-p">Trilha</span> Mentorias relâmpago</td><td><span class="t t-c">Aquático</span> Rodada 2</td></tr>
+<tr><td><b>12:00–13:30</b></td><td><span class="t t-g">Almoço</span> Turno A + networking</td><td><span class="t t-g">Almoço</span> Turno B + networking</td><td><span class="t t-g">Almoço</span> Premiação</td></tr>
+<tr><td><b>13:30–15:00</b></td><td><span class="t t-r">Palco</span> Talk + Q&A</td><td><span class="t t-b">Jogo</span> Competições terra</td><td><span class="t t-r">Palco</span> Encerramento</td></tr>
+<tr><td><b>15:00–17:00</b></td><td><span class="t t-p">Trilha</span> Workshops + networking</td><td><span class="t t-c">Aquático</span> Jogos aquáticos</td><td><span class="t t-a">Check-out</span> NPS</td></tr>
+<tr><td><b>17:00–19:00</b></td><td><span class="t t-b">Livre</span> Tempo livre</td><td><span class="t t-b">Livre</span> Atividades opcionais</td><td>—</td></tr>
+<tr><td><b>19:00–20:30</b></td><td><span class="t t-g">Jantar</span> Turno rotacionado</td><td><span class="t t-g">Jantar</span> Jantar temático</td><td>—</td></tr>
+<tr><td><b>20:30–00:00</b></td><td><span class="t t-pk">Social</span> Noite — quota</td><td><span class="t t-pk">Social</span> Festa encerramento</td><td>—</td></tr>
+</tbody></table></div>
+<div class="ins"><span>⚡</span><div><strong>Melhorias:</strong> Turnos A/B alternados. Networking dirigido. Regras D-15. Placar ao vivo.</div></div></div>
+<div class="sub" id="prog-esp"><div class="ss">Novidade 2026. Novembro garante clima quente para lago e piscinas.</div>
+<div style="margin-bottom:16px;"><span class="t t-c" style="font-size:12px;padding:4px 12px;">🌊 AQUÁTICOS</span></div>
+<div class="g3">
+<div class="sp aq"><div class="sp-i">🏄</div><div class="sp-n">Stand-Up Paddle</div><div class="sp-d">Corrida individual e times no lago. Instrução prévia. Inclusivo.</div></div>
+<div class="sp aq"><div class="sp-i">🛶</div><div class="sp-n">Caiaque / Canoagem</div><div class="sp-d">Revezamento duplas. Percurso com bóias. Eliminatórias.</div></div>
+<div class="sp aq"><div class="sp-i">🤽</div><div class="sp-n">Polo Aquático</div><div class="sp-d">Versão simplificada piscina. Times de 5. 10 min.</div></div>
+<div class="sp aq"><div class="sp-i">🏊</div><div class="sp-n">Revezamento Natação</div><div class="sp-d">4x25m piscina. Alto engajamento torcida.</div></div>
+<div class="sp aq"><div class="sp-i">💧</div><div class="sp-n">Circuito Inflável</div><div class="sp-d">Obstáculos na piscina. Contra relógio. Ótimo para vídeo.</div></div>
+<div class="sp aq"><div class="sp-i">🎯</div><div class="sp-n">War Aquático</div><div class="sp-d">Gincana água+terra. Times 10-15. Prova encerramento.</div></div></div>
+<div style="margin:28px 0 16px;"><span class="t t-g" style="font-size:12px;padding:4px 12px;">🏃 TERRA</span></div>
+<div class="g3">
+<div class="sp la"><div class="sp-i">⚽</div><div class="sp-n">Futebol Society</div><div class="sp-d">Times 7. 15 min. Chaves pré-definidas.</div></div>
+<div class="sp la"><div class="sp-i">🏐</div><div class="sp-n">Vôlei de Praia</div><div class="sp-d">Duplas. Mata-mata.</div></div>
+<div class="sp la"><div class="sp-i">🏃</div><div class="sp-n">Corrida Obstáculos</div><div class="sp-d">Percurso montado. Contra relógio.</div></div></div>
+<div style="margin:28px 0 16px;"><span class="t t-a" style="font-size:12px;padding:4px 12px;">🏠 INDOOR</span></div>
+<div class="g3">
+<div class="sp ind"><div class="sp-i">♟️</div><div class="sp-n">Jogos Mesa</div><div class="sp-d">Ping-pong, sinuca, totó.</div></div>
+<div class="sp ind"><div class="sp-i">🧠</div><div class="sp-n">Quiz V4</div><div class="sp-d">Perguntas empresa/mercado. Buzzer.</div></div></div>
+<div class="ins" style="margin-top:28px;"><span>🛟</span><div><strong>Segurança:</strong> Mín. 2 salva-vidas · Coletes em lago · Briefing obrigatório · Termo check-in · Kit 1º socorros · Instrutores SUP/caiaque.</div></div></div></div>
 
-<!-- ====== VISÃO GERAL ====== -->
-<div class="section active" id="visao">
-  <div class="section-title">Visão Geral</div>
-  <div class="section-subtitle">Parâmetros base para o planejamento, usando como referência a edição 2025 (353 check-ins, NPS 95,2%, CSAT 100%).</div>
+<!-- PRODUÇÃO -->
+<div class="sec" id="prod"><div class="st">Produção</div>
+<div class="sn"><button class="on" onclick="sw('prod','crono',this)">Cronograma</button><button onclick="sw('prod','bl',this)">Backlog (48)</button><button onclick="sw('prod','gantt',this)">Gantt</button></div>
+<div class="sub on" id="prod-crono"><div class="ss">Contagem regressiva abril–novembro em 4 fases.</div>
+<div class="ph"><div class="ph-n">01</div><div><div class="ph-t">Planejamento Estratégico</div><div class="ph-r">Abril — Maio (T-7 a T-6)</div></div></div>
+<div class="tl"><div class="tl-i"><div class="tl-dot"></div><div class="tl-dt">Abril</div><div class="tl-tt">Definições Macro</div><div class="tl-ds">Data exata · Orçamento · KPIs · Core team · Negociação aquáticos</div></div><div class="tl-i"><div class="tl-dot"></div><div class="tl-dt">Maio</div><div class="tl-tt">Estruturação</div><div class="tl-ds">Programação macro · Fornecedores aquáticos · Trilhas · Precificação · Protocolo segurança</div></div></div>
+<div class="ph"><div class="ph-n">02</div><div><div class="ph-t">Pré-Produção</div><div class="ph-r">Junho — Julho (T-5 a T-4)</div></div></div>
+<div class="tl"><div class="tl-i"><div class="tl-dot"></div><div class="tl-dt">Junho</div><div class="tl-tt">Comercial & Comunicação</div><div class="tl-ds">Página vendas · Early Bird · KV · Campanha redes · Palestrantes · Contrato aquáticos</div></div><div class="tl-i"><div class="tl-dot"></div><div class="tl-dt">Julho</div><div class="tl-tt">Operação em Construção</div><div class="tl-ds">Visita técnica · Lote 1→2 · Grade hora a hora · Chaves · Salva-vidas · Cardápio</div></div></div>
+<div class="ph"><div class="ph-n">03</div><div><div class="ph-t">Produção Ativa</div><div class="ph-r">Agosto — Setembro (T-3 a T-2)</div></div></div>
+<div class="tl"><div class="tl-i"><div class="tl-dot"></div><div class="tl-dt">Agosto</div><div class="tl-tt">Execução Acelerada</div><div class="tl-ds">Materiais gráficos · Grade final · Treinamento · Protocolo segurança · Briefing foto/vídeo</div></div><div class="tl-i"><div class="tl-dot"></div><div class="tl-dt">Setembro</div><div class="tl-tt">Refinamento</div><div class="tl-ds">Dry run · Plano B chuva · Teste equipamentos · Guia Participante · Placar ao vivo</div></div></div>
+<div class="ph"><div class="ph-n">04</div><div><div class="ph-t">Reta Final & Evento</div><div class="ph-r">Outubro — Novembro (T-1 a D-Day)</div></div></div>
+<div class="tl"><div class="tl-i"><div class="tl-dot"></div><div class="tl-dt">Outubro</div><div class="tl-tt">Últimos Ajustes</div><div class="tl-ds">Deadline D-15 · Guia enviado · Rooming list · Briefing final · Último Lote</div></div><div class="tl-i"><div class="tl-dot"></div><div class="tl-dt">Novembro</div><div class="tl-tt">Execução</div><div class="tl-ds">D-2: Montagem · D-1: Equipe · D-Day: 3 dias · D+1: Desmontagem · D+7: NPS · D+15: Debriefing</div></div></div></div>
+<div class="sub" id="prod-bl"><div class="ss">48 tarefas por fase e área.</div>
+<div class="sn" id="blF"><button class="on" onclick="fBL('all',this)">Todas</button><button onclick="fBL('estrategia',this)">Estratégia</button><button onclick="fBL('comercial',this)">Comercial</button><button onclick="fBL('conteudo',this)">Conteúdo</button><button onclick="fBL('logistica',this)">Logística</button><button onclick="fBL('esportes',this)">Esportes</button><button onclick="fBL('comunicacao',this)">Comunicação</button><button onclick="fBL('seguranca',this)">Segurança</button><button onclick="fBL('pos',this)">Pós</button></div>
+<div id="blC" style="font-size:12px;color:var(--dm);margin-bottom:12px;"></div>
+<div class="tw"><table id="blT" style="min-width:850px;"><thead><tr><th>#</th><th>Tarefa</th><th>Área</th><th>Fase</th><th>Prazo</th><th>Prioridade</th><th>Resp.</th></tr></thead><tbody id="blB"></tbody></table></div></div>
+<div class="sub" id="prod-gantt"><div class="ss">Visão temporal abril–dezembro 2026.</div>
+<div class="gantt-legend" id="gL"></div>
+<div class="gantt-wrap" style="margin-top:16px;"><div id="gSVG"></div></div></div></div>
 
-  <div class="grid-4">
-    <div class="card">
-      <div class="card-label">Público Estimado</div>
-      <div class="card-value">400+</div>
-      <div class="card-detail">Meta com crescimento de ~15% sobre 2025</div>
-    </div>
-    <div class="card">
-      <div class="card-label">Duração</div>
-      <div class="card-value">3 DIAS</div>
-      <div class="card-detail">Sugestão do debriefing: +1 dia vs. 2025</div>
-    </div>
-    <div class="card">
-      <div class="card-label">Local</div>
-      <div class="card-value">CLARA RESORT</div>
-      <div class="card-detail">Ibiúna, SP — infraestrutura já validada</div>
-    </div>
-    <div class="card">
-      <div class="card-label">Novidade</div>
-      <div class="card-value">AQUÁTICOS</div>
-      <div class="card-detail">Esportes náuticos como destaque da edição</div>
-    </div>
-  </div>
+<!-- OPERAÇÃO -->
+<div class="sec" id="oper"><div class="st">Operação</div>
+<div class="sn"><button class="on" onclick="sw('oper','log',this)">Logística</button><button onclick="sw('oper','com',this)">Comunicação</button></div>
+<div class="sub on" id="oper-log"><div class="ss">Checklists do debriefing 2025.</div>
+<div class="g2">
+<div class="cd"><div class="cd-l">🎫 Check-in</div><ul class="cl"><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Check-in escalonado 3 faixas</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>QR Code entrada</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Kit por quarto</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Rooming list D-15</span></li></ul></div>
+<div class="cd"><div class="cd-l">🍽️ Alimentação</div><ul class="cl"><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Turnos A/B</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Cardápio 30 dias antes</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Restrições na inscrição</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Hidratação perto aquáticos</span></li></ul></div>
+<div class="cd"><div class="cd-l">🏨 Resort</div><ul class="cl"><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Visita técnica aquáticos</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Energia AV perto lago</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Áreas exclusivas aquáticos</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Vestiários sinalizados</span></li></ul></div>
+<div class="cd"><div class="cd-l">🎮 Competições</div><ul class="cl"><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Chaves/regras D-15</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Placar ao vivo</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Arbitragem dedicada</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Premiação comunicada</span></li></ul></div>
+<div class="cd"><div class="cd-l">🎤 AV</div><ul class="cl"><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Teste som/projeção D-2</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>GoPro aquáticos</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Fotógrafo aquáticos</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Drone aéreas</span></li></ul></div>
+<div class="cd"><div class="cd-l">⚠️ Segurança</div><ul class="cl"><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Salva-vidas certificados</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Termo no check-in</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Kit 1º socorros</span></li><li><div class="ck" onclick="this.classList.toggle('on');this.nextElementSibling.classList.toggle('done')"></div><span>Plano B chuva</span></li></ul></div></div></div>
+<div class="sub" id="oper-com"><div class="ss">Comunicação T-5 até D+15.</div>
+<div class="tw"><table style="min-width:650px;"><thead><tr><th>Quando</th><th>O quê</th><th>Canal</th><th>Resp.</th></tr></thead><tbody>
+<tr><td><span class="t t-b">T-5</span></td><td>Save the Date + identidade</td><td>Insta, E-mail, WhatsApp</td><td>Mkt</td></tr>
+<tr><td><span class="t t-b">T-4</span></td><td>Early Bird + LP vendas</td><td>Landing Page, CRM</td><td>Comercial</td></tr>
+<tr><td><span class="t t-b">T-3</span></td><td>Programação + palestrantes</td><td>Insta, E-mail</td><td>Mkt</td></tr>
+<tr><td><span class="t t-a">T-2</span></td><td>Destaque aquáticos + making-of</td><td>Reels, Stories</td><td>Mkt</td></tr>
+<tr><td><span class="t t-a">T-1</span></td><td>Lote final + countdown</td><td>Todos</td><td>Comercial</td></tr>
+<tr><td><span class="t t-r">D-15</span></td><td><strong>Guia Participante completo</strong></td><td>E-mail + WhatsApp</td><td>Produção</td></tr>
+<tr><td><span class="t t-r">D-7</span></td><td>Reforço logístico</td><td>WhatsApp</td><td>Produção</td></tr>
+<tr><td><span class="t t-g">D+3</span></td><td>Fotos + highlights</td><td>Insta, E-mail</td><td>Mkt</td></tr>
+<tr><td><span class="t t-g">D+7</span></td><td>Pesquisa NPS/CSAT</td><td>E-mail</td><td>Produção</td></tr>
+<tr><td><span class="t t-g">D+15</span></td><td>Debriefing</td><td>Reunião</td><td>Core team</td></tr>
+</tbody></table></div>
+<div class="ins"><span>📋</span><div><strong>Guia Participante (D-15):</strong> Agenda, modalidades com regras, o que levar, política bebida, FAQ, mapa resort.</div></div></div></div>
 
-  <div class="insight-box">
-    <div class="icon">💡</div>
-    <div class="text"><strong>Vantagem Novembro:</strong> Temperaturas mais altas (média 25-30°C em Ibiúna) favorecem diretamente a nova proposta de esportes aquáticos. O clima quente transforma as atividades na água em destaque real do evento — diferente de agosto, quando as manhãs eram frias demais para atividades aquáticas confortáveis.</div>
-  </div>
-
-  <div class="section-title" style="font-size:24px; margin-top:40px;">Premissas Estratégicas</div>
-  <div class="grid-2" style="margin-top:16px;">
-    <div class="card">
-      <div class="card-label">Conteúdo</div>
-      <div style="font-size:14px; color:var(--text); line-height:1.7;">
-        Trilhas segmentadas por função/maturidade, workshops práticos, mentorias relâmpago e painéis com C-levels. Profundidade > quantidade. Conteúdo no Dia 1 e manhã do Dia 2.
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-label">Integração & Esportes</div>
-      <div style="font-size:14px; color:var(--text); line-height:1.7;">
-        Tarde do Dia 2 e Dia 3 inteiro dedicados a jogos, esportes aquáticos e networking guiado. Placar ao vivo, regras antecipadas, modalidades inclusivas.
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-label">Precificação</div>
-      <div style="font-size:14px; color:var(--text); line-height:1.7;">
-        Lotes progressivos: Early Bird → Lote 1 (+10%) → Lote 2 (+20%) → Último Lote (+30%). Pacotes premium com extras (quarto single, experiência VIP).
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-label">Operação</div>
-      <div style="font-size:14px; color:var(--text); line-height:1.7;">
-        Data limite rígida para vendas/trocas (15 dias antes). Check-in escalonado por faixas de horário. Turnos de refeição rotacionados.
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ====== CRONOGRAMA ====== -->
-<div class="section" id="cronograma">
-  <div class="section-title">Cronograma de Produção</div>
-  <div class="section-subtitle">Contagem regressiva reversa partindo de novembro 2026. Cada fase tem entregas claras que alimentam a próxima.</div>
-
-  <!-- FASE 1 -->
-  <div class="phase-banner">
-    <div class="phase-number">01</div>
-    <div>
-      <div class="phase-info-title">Planejamento Estratégico</div>
-      <div class="phase-info-range">Abril — Maio 2026 (T-7 a T-6 meses)</div>
-    </div>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Abril 2026</div>
-      <div class="timeline-title">Definições Macro</div>
-      <div class="timeline-desc">Confirmar data exata com Clara Resort · Definir orçamento geral · Alinhar objetivos e KPIs da edição (meta de público, NPS, receita) · Montar core team de produção · Iniciar negociação com resort (pacote, exclusividade, infraestrutura aquática)</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Maio 2026</div>
-      <div class="timeline-title">Estruturação do Evento</div>
-      <div class="timeline-desc">Definir programação macro (3 dias) · Mapear fornecedores de esportes aquáticos (stand-up paddle, caiaque, wakeboard, etc.) · Definir trilhas de conteúdo e curadoria de palestrantes · Criar estratégia de precificação e lotes · Elaborar manual de segurança aquática</div>
-    </div>
-  </div>
-
-  <!-- FASE 2 -->
-  <div class="phase-banner">
-    <div class="phase-number">02</div>
-    <div>
-      <div class="phase-info-title">Pré-Produção</div>
-      <div class="phase-info-range">Junho — Julho 2026 (T-5 a T-4 meses)</div>
-    </div>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Junho 2026</div>
-      <div class="timeline-title">Comercial & Comunicação</div>
-      <div class="timeline-desc">Lançar página de vendas · Abrir Early Bird · Criar KV e identidade visual da edição · Iniciar campanha de aquecimento nas redes · Confirmar palestrantes e painelistas · Fechar contrato com fornecedores de atividades aquáticas</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Julho 2026</div>
-      <div class="timeline-title">Operação em Construção</div>
-      <div class="timeline-desc">Visita técnica ao Clara Resort (validar estrutura de lago/piscina para aquáticos) · Fechar Lote 1 e abrir Lote 2 · Detalhar programação hora a hora · Planejar sistema de chaves/times para competições · Contratar equipe de salva-vidas e instrutores · Definir cardápio com resort (incluir turnos)</div>
-    </div>
-  </div>
-
-  <!-- FASE 3 -->
-  <div class="phase-banner">
-    <div class="phase-number">03</div>
-    <div>
-      <div class="phase-info-title">Produção Ativa</div>
-      <div class="phase-info-range">Agosto — Setembro 2026 (T-3 a T-2 meses)</div>
-    </div>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Agosto 2026</div>
-      <div class="timeline-title">Execução Acelerada</div>
-      <div class="timeline-desc">Produzir materiais gráficos (sinalização, crachás, placas de jogos) · Confirmar toda a grade de conteúdo · Treinar equipe de apoio (voluntários, monitores) · Protocolo de segurança aquática validado · Briefing para fotografia/vídeo · Abrir Lote 2</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Setembro 2026</div>
-      <div class="timeline-title">Refinamento & Contingência</div>
-      <div class="timeline-desc">Simulação de agenda completa (dry run) · Plano B para atividades ao ar livre (chuva) · Fechar vendas regulares · Testar equipamentos aquáticos no local · Finalizar guia do participante · Sistema de placar ao vivo configurado</div>
-    </div>
-  </div>
-
-  <!-- FASE 4 -->
-  <div class="phase-banner">
-    <div class="phase-number">04</div>
-    <div>
-      <div class="phase-info-title">Reta Final & Evento</div>
-      <div class="phase-info-range">Outubro — Novembro 2026 (T-1 a D-Day)</div>
-    </div>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Outubro 2026</div>
-      <div class="timeline-title">Últimos Ajustes</div>
-      <div class="timeline-desc">Data limite para vendas/trocas (dia 15) · Enviar guia do participante (agenda, dress code, regras dos jogos, FAQ) · Confirmar rooming list com resort · Briefing final de toda a equipe · Fechar Último Lote · Comunicação D-15: agenda completa para participantes</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Novembro 2026</div>
-      <div class="timeline-title">Montagem & Execução</div>
-      <div class="timeline-desc">D-2: Montagem no resort, teste de som/AV/aquáticos · D-1: Chegada equipe completa, check final · D-Day: Execução do evento (3 dias) · D+1: Desmontagem · D+7: Envio pesquisa NPS/CSAT · D+15: Debriefing completo</div>
-    </div>
-  </div>
-</div>
-
-<!-- ====== PROGRAMAÇÃO ====== -->
-<div class="section" id="programacao">
-  <div class="section-title">Programação 3 Dias</div>
-  <div class="section-subtitle">Estrutura sugerida separando conteúdo (Dia 1), conteúdo + integração (Dia 2) e esportes aquáticos + encerramento (Dia 3) — conforme recomendação do debriefing 2025.</div>
-
-  <div class="table-wrap">
-    <table style="min-width:800px;">
-      <thead>
-        <tr><th style="width:110px;">Horário</th><th>Dia 1 — Conteúdo & Abertura</th><th>Dia 2 — Conteúdo & Integração</th><th>Dia 3 — Aquáticos & Encerramento</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="font-weight:600;">07:00–08:30</td>
-          <td><span class="tag tag-amber">Check-in</span> Escalonado por faixas + kit boas-vindas</td>
-          <td><span class="tag tag-green">Café</span> Café da manhã — turno A</td>
-          <td><span class="tag tag-green">Café</span> Café da manhã — turno B</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">08:30–09:00</td>
-          <td><span class="tag tag-green">Café</span> Café da manhã</td>
-          <td><span class="tag tag-green">Café</span> Café da manhã — turno B</td>
-          <td><span class="tag tag-cyan">Prep</span> Briefing esportes aquáticos</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">09:00–10:30</td>
-          <td><span class="tag tag-red">Palco</span> Abertura + Keynote principal</td>
-          <td><span class="tag tag-red">Palco</span> Painel C-Level — Casos reais</td>
-          <td><span class="tag tag-cyan">Aquático</span> Circuito aquático — Rodada 1</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">10:30–12:00</td>
-          <td><span class="tag tag-purple">Trilha</span> Workshops simultâneos (3 salas)</td>
-          <td><span class="tag tag-purple">Trilha</span> Mentorias relâmpago (15 min cada)</td>
-          <td><span class="tag tag-cyan">Aquático</span> Circuito aquático — Rodada 2</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">12:00–13:30</td>
-          <td><span class="tag tag-green">Almoço</span> Turno A + networking dirigido</td>
-          <td><span class="tag tag-green">Almoço</span> Turno B + networking dirigido</td>
-          <td><span class="tag tag-green">Almoço</span> Almoço de encerramento + premiação</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">13:30–15:00</td>
-          <td><span class="tag tag-red">Palco</span> Talk inspiracional + Q&A aberto</td>
-          <td><span class="tag tag-blue">Jogo</span> Competições esportivas em terra</td>
-          <td><span class="tag tag-red">Palco</span> Encerramento — retrospectiva + anúncios</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">15:00–17:00</td>
-          <td><span class="tag tag-purple">Trilha</span> Workshops + rodada de networking obrigatória</td>
-          <td><span class="tag tag-cyan">Aquático</span> Jogos aquáticos em times</td>
-          <td><span class="tag tag-amber">Check-out</span> Despedida + pesquisa NPS</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">17:00–19:00</td>
-          <td><span class="tag tag-blue">Livre</span> Tempo livre + esportes opcionais</td>
-          <td><span class="tag tag-blue">Livre</span> Tempo livre + atividades opcionais</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">19:00–20:30</td>
-          <td><span class="tag tag-green">Jantar</span> Jantar — turno rotacionado</td>
-          <td><span class="tag tag-green">Jantar</span> Jantar de gala / temático</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600;">20:30–00:00</td>
-          <td><span class="tag tag-pink">Social</span> Noite social — quota de bebida controlada</td>
-          <td><span class="tag tag-pink">Social</span> Festa de encerramento noturno</td>
-          <td>—</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="insight-box">
-    <div class="icon">⚡</div>
-    <div class="text"><strong>Melhoria aplicada:</strong> Turnos de refeição alternados (A/B) para evitar filas. Networking dirigido com rodadas obrigatórias no almoço. Regras dos jogos publicadas 15 dias antes. Placar ao vivo em tela durante as competições.</div>
-  </div>
-</div>
-
-<!-- ====== ESPORTES & AQUÁTICOS ====== -->
-<div class="section" id="esportes">
-  <div class="section-title">Esportes & Atividades Aquáticas</div>
-  <div class="section-subtitle">A grande novidade de 2026. Novembro garante clima quente para maximizar o uso da infraestrutura do lago e piscinas do Clara Resort.</div>
-
-  <div style="margin-bottom:24px;">
-    <span class="tag tag-cyan" style="font-size:13px; padding:5px 14px;">🌊 AQUÁTICOS</span>
-    <span style="font-size:13px; color:var(--text-muted); margin-left:8px;">Foco principal da edição</span>
-  </div>
-
-  <div class="grid-3">
-    <div class="sport-card aqua">
-      <div class="sport-icon">🏄</div>
-      <div class="sport-name">Stand-Up Paddle (SUP)</div>
-      <div class="sport-detail">Corrida individual e por times no lago. Acessível para todos os níveis. Inclui instrução prévia de 15 min. Modalidade inclusiva — pode ser feito sentado.</div>
-    </div>
-    <div class="sport-card aqua">
-      <div class="sport-icon">🛶</div>
-      <div class="sport-name">Caiaque / Canoagem</div>
-      <div class="sport-detail">Circuito de revezamento em duplas. Percurso com bóias no lago. Competição por tempo — formato eliminatória até final.</div>
-    </div>
-    <div class="sport-card aqua">
-      <div class="sport-icon">🤽</div>
-      <div class="sport-name">Polo Aquático Adaptado</div>
-      <div class="sport-detail">Versão simplificada na piscina com times de 5. Regras reduzidas para não-atletas. Partidas de 10 minutos — alta rotatividade.</div>
-    </div>
-    <div class="sport-card aqua">
-      <div class="sport-icon">🏊</div>
-      <div class="sport-name">Revezamento de Natação</div>
-      <div class="sport-detail">Revezamento 4x25m na piscina. Cada membro do time nada um trecho. Formato rápido e de alto engajamento na torcida.</div>
-    </div>
-    <div class="sport-card aqua">
-      <div class="sport-icon">💧</div>
-      <div class="sport-name">Circuito Aquático Inflável</div>
-      <div class="sport-detail">Obstáculos infláveis na piscina (se disponível). Alta energia e diversão. Formato contra o relógio — individual ou dupla. Excelente para conteúdo de vídeo.</div>
-    </div>
-    <div class="sport-card aqua">
-      <div class="sport-icon">🎯</div>
-      <div class="sport-name">War Aquático (Gincana)</div>
-      <div class="sport-detail">Prova coletiva com desafios mistos (água + terra). Times grandes (10-15 pessoas). Prova de encerramento que reúne todos os grupos.</div>
-    </div>
-  </div>
-
-  <div style="margin:32px 0 24px;">
-    <span class="tag tag-green" style="font-size:13px; padding:5px 14px;">🏃 TERRA</span>
-    <span style="font-size:13px; color:var(--text-muted); margin-left:8px;">Mantidos da edição anterior</span>
-  </div>
-
-  <div class="grid-3">
-    <div class="sport-card land">
-      <div class="sport-icon">⚽</div>
-      <div class="sport-name">Futebol Society</div>
-      <div class="sport-detail">Chaves pré-definidas. Times de 7. Partidas de 15 min. Regras publicadas 15 dias antes.</div>
-    </div>
-    <div class="sport-card land">
-      <div class="sport-icon">🏐</div>
-      <div class="sport-name">Vôlei de Praia</div>
-      <div class="sport-detail">Duplas ou quartetos. Formato mata-mata. Quadra de areia do resort.</div>
-    </div>
-    <div class="sport-card land">
-      <div class="sport-icon">🏃</div>
-      <div class="sport-name">Corrida de Obstáculos</div>
-      <div class="sport-detail">Percurso montado no resort. Individual contra o relógio. Categorias mistas.</div>
-    </div>
-  </div>
-
-  <div style="margin:32px 0 24px;">
-    <span class="tag tag-amber" style="font-size:13px; padding:5px 14px;">🏠 INDOOR / INCLUSIVAS</span>
-  </div>
-
-  <div class="grid-3">
-    <div class="sport-card indoor">
-      <div class="sport-icon">♟️</div>
-      <div class="sport-name">Torneio de Jogos de Mesa</div>
-      <div class="sport-detail">Ping-pong, sinuca, totó. Para quem prefere atividades não-físicas. Pontuação conta no placar geral.</div>
-    </div>
-    <div class="sport-card indoor">
-      <div class="sport-icon">🧠</div>
-      <div class="sport-name">Quiz / Trivia V4</div>
-      <div class="sport-detail">Perguntas sobre a empresa, mercado e cultura. Times mistos. Formato rápido com buzzer.</div>
-    </div>
-  </div>
-
-  <div class="insight-box" style="margin-top:32px;">
-    <div class="icon">🛟</div>
-    <div class="text"><strong>Segurança Aquática (não negociável):</strong> Mínimo 2 salva-vidas certificados por estação aquática · Coletes salva-vidas disponíveis em todas as atividades de lago · Briefing de segurança obrigatório antes de cada rodada · Termo de responsabilidade assinado no check-in · Kit de primeiros socorros aquáticos posicionado · Instrutores treinados para SUP e caiaque.</div>
-  </div>
-</div>
-
-<!-- ====== LOGÍSTICA ====== -->
-<div class="section" id="logistica">
-  <div class="section-title">Logística & Operação</div>
-  <div class="section-subtitle">Checklist operacional construído a partir dos aprendizados do debriefing 2025. Cada item resolve um ponto de dor real da última edição.</div>
-
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-label">🎫 Check-in</div>
-      <ul class="checklist">
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Check-in escalonado em 3 faixas de horário</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Sistema de QR Code para agilizar entrada</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Kit boas-vindas pronto por quarto (não por fila)</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Rooming list confirmada D-15</span></li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">🍽️ Alimentação</div>
-      <ul class="checklist">
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Turnos A/B rotacionados por dia</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Cardápio acordado com resort 30 dias antes</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Levantar restrições alimentares no ato da inscrição</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Estação de hidratação fixa próxima às atividades aquáticas</span></li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">🏨 Hospedagem & Resort</div>
-      <ul class="checklist">
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Visita técnica para validar infraestrutura aquática</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Mapear pontos de energia para AV perto do lago</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Definir áreas exclusivas para atividades aquáticas</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Vestiários/trocadores próximos ao lago sinalizados</span></li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">🎮 Competições</div>
-      <ul class="checklist">
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Chaves e regras publicadas 15 dias antes</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Placar ao vivo em tela durante todo o evento</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Equipe dedicada para arbitragem (não participantes)</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Premiação definida e comunicada com antecedência</span></li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">🎤 AV & Conteúdo</div>
-      <ul class="checklist">
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Teste de som/projeção D-2</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Câmera aquática (GoPro) para conteúdo nas atividades</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Fotógrafo dedicado para momentos aquáticos</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Drone autorizado para imagens aéreas do lago</span></li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">⚠️ Segurança</div>
-      <ul class="checklist">
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Salva-vidas certificados contratados</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Termo de responsabilidade integrado ao check-in</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Kit primeiros socorros aquáticos posicionado</span></li>
-        <li><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">Plano B para chuva (redirecionar para indoor)</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- ====== COMUNICAÇÃO ====== -->
-<div class="section" id="comunicacao">
-  <div class="section-title">Plano de Comunicação</div>
-  <div class="section-subtitle">Cronograma de comunicação com participantes e público — resolvendo a principal reclamação de 2025: falta de informação antecipada.</div>
-
-  <div class="table-wrap">
-    <table style="min-width:700px;">
-      <thead>
-        <tr><th>Quando</th><th>O quê</th><th>Canal</th><th>Responsável</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><span class="tag tag-blue">T-5 meses</span></td><td>Teaser "Save the Date" + identidade visual</td><td>Instagram, E-mail, WhatsApp</td><td>Marketing</td></tr>
-        <tr><td><span class="tag tag-blue">T-4 meses</span></td><td>Abertura Early Bird + página de vendas</td><td>Landing Page, CRM</td><td>Comercial + Mkt</td></tr>
-        <tr><td><span class="tag tag-blue">T-3 meses</span></td><td>Revelação programação + palestrantes confirmados</td><td>Instagram, E-mail</td><td>Marketing</td></tr>
-        <tr><td><span class="tag tag-amber">T-2 meses</span></td><td>Destaque: esportes aquáticos + making-of preparação</td><td>Reels, Stories</td><td>Marketing</td></tr>
-        <tr><td><span class="tag tag-amber">T-1 mês</span></td><td>Lote final + urgência + countdown</td><td>Todos os canais</td><td>Comercial</td></tr>
-        <tr><td><span class="tag tag-red">D-15</span></td><td><strong>Guia do Participante completo</strong> (agenda, dress code, regras jogos, FAQ, o que levar para aquáticos)</td><td>E-mail + WhatsApp</td><td>Produção</td></tr>
-        <tr><td><span class="tag tag-red">D-7</span></td><td>Reforço logístico: horário check-in, como chegar, rooming</td><td>WhatsApp</td><td>Produção</td></tr>
-        <tr><td><span class="tag tag-green">D+3</span></td><td>Galeria de fotos + vídeo highlights</td><td>Instagram, E-mail</td><td>Marketing</td></tr>
-        <tr><td><span class="tag tag-green">D+7</span></td><td>Pesquisa NPS / CSAT</td><td>E-mail</td><td>Produção</td></tr>
-        <tr><td><span class="tag tag-green">D+15</span></td><td>Debriefing interno</td><td>Reunião</td><td>Core team</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="insight-box">
-    <div class="icon">📋</div>
-    <div class="text"><strong>Guia do Participante (D-15):</strong> O debriefing 2025 identificou que muitos participantes chegaram sem saber a agenda, regras dos jogos ou dress code. Desta vez, o guia deve incluir: agenda dia a dia, lista de modalidades esportivas com regras, o que levar (roupa de banho, protetor solar, tênis), política de bebida, FAQ, e mapa do resort com áreas de atividades.</div>
-  </div>
-</div>
-
-<!-- ====== MELHORIAS ====== -->
-<div class="section" id="melhorias">
-  <div class="section-title">Melhorias 2025 → 2026</div>
-  <div class="section-subtitle">Cada item abaixo é uma resposta direta a um ponto levantado no debriefing da edição anterior.</div>
-
-  <div class="table-wrap">
-    <table style="min-width:750px;">
-      <thead>
-        <tr><th style="width:30%;">Problema em 2025</th><th style="width:35%;">Solução para 2026</th><th style="width:15%;">Área</th><th style="width:20%;">Status</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Conteúdo raso, faltou profundidade</td>
-          <td>Trilhas segmentadas + workshops de 90 min + mentorias relâmpago</td>
-          <td><span class="tag tag-purple">Conteúdo</span></td>
-          <td><span class="tag tag-amber">Planejar</span></td>
-        </tr>
-        <tr>
-          <td>Participantes sem informações antecipadas</td>
-          <td>Guia do Participante enviado D-15 com agenda, regras e FAQ</td>
-          <td><span class="tag tag-blue">Comunicação</span></td>
-          <td><span class="tag tag-amber">Planejar</span></td>
-        </tr>
-        <tr>
-          <td>Jogos desorganizados, regras confusas</td>
-          <td>Chaves publicadas D-15 · Equipe de arbitragem dedicada · Placar ao vivo</td>
-          <td><span class="tag tag-green">Esportes</span></td>
-          <td><span class="tag tag-amber">Planejar</span></td>
-        </tr>
-        <tr>
-          <td>Filas no check-in e refeições</td>
-          <td>Check-in escalonado em 3 faixas · Turnos A/B alternados nas refeições</td>
-          <td><span class="tag tag-red">Logística</span></td>
-          <td><span class="tag tag-amber">Planejar</span></td>
-        </tr>
-        <tr>
-          <td>Vendas/trocas de ingresso de última hora</td>
-          <td>Data limite rígida D-15 · Sem exceções comunicadas desde o lançamento</td>
-          <td><span class="tag tag-red">Comercial</span></td>
-          <td><span class="tag tag-amber">Planejar</span></td>
-        </tr>
-        <tr>
-          <td>Bebida sem controle em momentos inadequados</td>
-          <td>Quota controlada apenas nas noites sociais · Sem álcool durante atividades</td>
-          <td><span class="tag tag-pink">Social</span></td>
-          <td><span class="tag tag-amber">Planejar</span></td>
-        </tr>
-        <tr>
-          <td>Networking superficial</td>
-          <td>Rodadas obrigatórias nos almoços · Mentorias relâmpago · Speed networking</td>
-          <td><span class="tag tag-purple">Conteúdo</span></td>
-          <td><span class="tag tag-amber">Planejar</span></td>
-        </tr>
-        <tr>
-          <td>Poucas opções de esportes</td>
-          <td>6 modalidades aquáticas + 3 terrestres + 2 indoor/inclusivas</td>
-          <td><span class="tag tag-cyan">Aquáticos</span></td>
-          <td><span class="tag tag-amber">Planejar</span></td>
-        </tr>
-        <tr>
-          <td>Faltou 1 dia para separar conteúdo de integração</td>
-          <td>Evento expandido para 3 dias com separação clara</td>
-          <td><span class="tag tag-red">Estrutura</span></td>
-          <td><span class="tag tag-green">Definido</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ====== BACKLOG OPERACIONAL ====== -->
-<div class="section" id="backlog">
-  <div class="section-title">Backlog Operacional</div>
-  <div class="section-subtitle">Todas as tarefas de produção do evento organizadas por fase e área. Use os filtros para navegar por categoria ou prioridade.</div>
-
-  <div class="backlog-filters">
-    <button class="filter-btn active" onclick="filterBacklog('all',this)">Todas</button>
-    <button class="filter-btn" onclick="filterBacklog('estrategia',this)">Estratégia</button>
-    <button class="filter-btn" onclick="filterBacklog('comercial',this)">Comercial</button>
-    <button class="filter-btn" onclick="filterBacklog('conteudo',this)">Conteúdo</button>
-    <button class="filter-btn" onclick="filterBacklog('logistica',this)">Logística</button>
-    <button class="filter-btn" onclick="filterBacklog('esportes',this)">Esportes</button>
-    <button class="filter-btn" onclick="filterBacklog('comunicacao',this)">Comunicação</button>
-    <button class="filter-btn" onclick="filterBacklog('seguranca',this)">Segurança</button>
-    <button class="filter-btn" onclick="filterBacklog('pos',this)">Pós-Evento</button>
-  </div>
-  <div class="backlog-count" id="backlogCount">Mostrando 48 tarefas</div>
-
-  <div class="table-wrap">
-    <table id="backlogTable" style="min-width:900px;">
-      <thead>
-        <tr>
-          <th style="width:5%;">#</th>
-          <th style="width:30%;">Tarefa</th>
-          <th style="width:12%;">Área</th>
-          <th style="width:12%;">Fase</th>
-          <th style="width:11%;">Prazo</th>
-          <th style="width:10%;">Prioridade</th>
-          <th style="width:10%;">Responsável</th>
-          <th style="width:10%;">Status</th>
-        </tr>
-      </thead>
-      <tbody id="backlogBody"></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ====== GANTT ====== -->
-<div class="section" id="gantt">
-  <div class="section-title">Gantt de Produção</div>
-  <div class="section-subtitle">Visão temporal de todas as frentes de trabalho de abril a dezembro de 2026. A linha vermelha indica o mês atual.</div>
-
-  <div class="gantt-legend">
-    <div class="gantt-legend-item"><div class="gantt-legend-color" style="background:#E31837;"></div>Estratégia</div>
-    <div class="gantt-legend-item"><div class="gantt-legend-color" style="background:#FF9800;"></div>Comercial</div>
-    <div class="gantt-legend-item"><div class="gantt-legend-color" style="background:#9C27B0;"></div>Conteúdo</div>
-    <div class="gantt-legend-item"><div class="gantt-legend-color" style="background:#2196F3;"></div>Comunicação</div>
-    <div class="gantt-legend-item"><div class="gantt-legend-color" style="background:#00BCD4;"></div>Esportes & Aquáticos</div>
-    <div class="gantt-legend-item"><div class="gantt-legend-color" style="background:#4CAF50;"></div>Logística & Operação</div>
-    <div class="gantt-legend-item"><div class="gantt-legend-color" style="background:#E91E63;"></div>Segurança</div>
-    <div class="gantt-legend-item"><div class="gantt-legend-color" style="background:#607D8B;"></div>Pós-Evento</div>
-  </div>
-
-  <div class="gantt-container" style="margin-top:24px;">
-    <table class="gantt-table" id="ganttTable">
-      <thead id="ganttHead"></thead>
-      <tbody id="ganttBody"></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ====== FORECASTING ====== -->
-<div class="section" id="forecast">
-  <div class="section-title">Forecasting Financeiro</div>
-  <div class="section-subtitle">Projeção de receita, custos e resultado para a edição 2026 — baseado nos dados reais de 2025 (376 PAX, receita R$ 1.15M, despesas R$ 1.22M). Modelo com 3 cenários e custos adicionais de esportes aquáticos.</div>
-
-  <div class="forecast-scenario-tabs">
-    <button class="scenario-tab active" onclick="setScenario('otimista',this)">Otimista (420 PAX)</button>
-    <button class="scenario-tab" onclick="setScenario('base',this)">Base (400 PAX)</button>
-    <button class="scenario-tab" onclick="setScenario('conservador',this)">Conservador (350 PAX)</button>
-  </div>
-
-  <!-- KPIs -->
-  <div class="grid-4" id="forecastKpis"></div>
-
-  <div class="insight-box">
-    <div class="icon">📊</div>
-    <div class="text"><strong>Base de cálculo 2025 → 2026:</strong> Ticket médio reajustado em +10% sobre 2025 (inflação + valor percebido com aquáticos). Mix de quartos mantido proporcional ao realizado 2025 (2% Single, 39% Double, 52% Triplo, 7% Quádruplo). Deduções em 9.6% (checkout 3.6% + impostos 6%). Custo resort estimado com +8% sobre contrato 2025. Novo bloco de custos: esportes aquáticos.</div>
-  </div>
-
-  <div class="grid-2">
-    <!-- RECEITA -->
-    <div class="card" style="padding:28px;">
-      <div class="card-label">📈 Receita</div>
-      <div id="forecastReceita"></div>
-    </div>
-    <!-- DESPESAS -->
-    <div class="card" style="padding:28px;">
-      <div class="card-label">📉 Despesas</div>
-      <div id="forecastDespesas"></div>
-    </div>
-  </div>
-
-  <div class="forecast-divider"></div>
-
-  <!-- RESULTADO -->
-  <div class="card" style="padding:28px;">
-    <div class="card-label">🏦 DRE Simplificado</div>
-    <div id="forecastDRE"></div>
-  </div>
-
-  <div class="forecast-divider"></div>
-
-  <!-- COMPARATIVO VISUAL -->
-  <div class="card" style="padding:28px;">
-    <div class="card-label">📊 Composição de Custos (% do total)</div>
-    <div id="forecastBars" style="margin-top:16px;"></div>
-  </div>
-
-  <div class="forecast-divider"></div>
-
-  <!-- RACIONAL INGRESSOS -->
-  <div class="card" style="padding:28px;">
-    <div class="card-label">🎫 Racional de Ingressos por Lote</div>
-    <div class="table-wrap" style="margin-top:12px;">
-      <table id="forecastIngressos" style="min-width:800px;"></table>
-    </div>
-  </div>
-
-  <div class="forecast-divider"></div>
-
-  <!-- COMPARATIVO 2025 vs 2026 -->
-  <div class="card" style="padding:28px;">
-    <div class="card-label">🔄 Comparativo 2025 (Realizado) vs 2026 (Projetado)</div>
-    <div id="forecastComparativo" style="margin-top:12px;"></div>
-  </div>
-</div>
-
+<!-- FINANCEIRO -->
+<div class="sec" id="fin"><div class="st">Financeiro</div>
+<div class="sn"><button class="on" onclick="sw('fin','fc',this)">Forecasting</button><button onclick="sw('fin','calc',this)">Calculadora de Cenários</button></div>
+<div class="sub on" id="fin-fc"><div class="ss">Dados reais 2025: 376 PAX, receita R$ 1.15M, despesas R$ 1.22M.</div>
+<div class="sn" id="scN"><button class="on" onclick="setS('otimista',this)">Otimista (420)</button><button onclick="setS('base',this)">Base (400)</button><button onclick="setS('conservador',this)">Conservador (350)</button></div>
+<div class="g4" id="fK"></div>
+<div class="ins"><span>📊</span><div><strong>Base:</strong> Tickets +10% sobre 2025. Mix proporcional realizado. Deduções 9.6%. Resort +8%. Novo: aquáticos R$ 65K.</div></div>
+<div class="g2"><div class="cd" style="padding:24px;"><div class="cd-l">📈 Receita</div><div id="fR"></div></div><div class="cd" style="padding:24px;"><div class="cd-l">📉 Despesas</div><div id="fD"></div></div></div>
+<div class="cd" style="padding:24px;margin-bottom:24px;"><div class="cd-l">🏦 DRE</div><div id="fDRE"></div></div>
+<div class="cd" style="padding:24px;margin-bottom:24px;"><div class="cd-l">📊 Custos</div><div id="fB" style="margin-top:14px;"></div></div>
+<div class="cd" style="padding:24px;margin-bottom:24px;"><div class="cd-l">🎫 Ingressos por Lote</div><div class="tw" style="margin-top:10px;margin-bottom:0;"><table id="fI" style="min-width:760px;"></table></div></div>
+<div class="cd" style="padding:24px;"><div class="cd-l">🔄 2025 vs 2026</div><div class="tw" style="margin-top:10px;margin-bottom:0;"><table id="fC" style="min-width:550px;"></table></div></div></div>
+<div class="sub" id="fin-calc"><div class="ss">Monte seu cenário. Resultado atualiza em tempo real.</div>
+<div class="g4" id="cK"></div>
+<div class="cd" style="padding:24px;margin-bottom:20px;"><div class="cd-l" style="margin-bottom:16px;">🎫 Ingressos</div>
+<div class="calc-g"><div class="calc-f"><label>PAX Total</label><input type="range" min="250" max="500" value="400" id="cPax" oninput="cU()"><div class="rv"><span>250</span><span id="vPax">400</span><span>500</span></div></div>
+<div class="calc-f"><label>% Single</label><input type="range" min="0" max="10" value="2" id="cS" oninput="cU()"><div class="rv"><span>0%</span><span id="vS">2%</span><span>10%</span></div></div>
+<div class="calc-f"><label>% Double</label><input type="range" min="20" max="60" value="39" id="cD" oninput="cU()"><div class="rv"><span>20%</span><span id="vD">39%</span><span>60%</span></div></div>
+<div class="calc-f"><label>% Triplo</label><input type="range" min="20" max="70" value="52" id="cTr" oninput="cU()"><div class="rv"><span>20%</span><span id="vTr">52%</span><span>70%</span></div></div></div></div>
+<div class="cd" style="padding:24px;margin-bottom:20px;"><div class="cd-l" style="margin-bottom:16px;">💰 Tickets Early Bird</div>
+<div class="calc-g"><div class="calc-f"><label>Single</label><input type="number" value="6930" id="cTS" oninput="cU()"></div>
+<div class="calc-f"><label>Double</label><input type="number" value="3465" id="cTD" oninput="cU()"></div>
+<div class="calc-f"><label>Triplo</label><input type="number" value="2970" id="cTT" oninput="cU()"></div>
+<div class="calc-f"><label>Quádruplo</label><input type="number" value="2475" id="cTQ" oninput="cU()"></div></div>
+<div class="calc-g" style="margin-top:12px;"><div class="calc-f"><label>SST / Cotas</label><input type="number" value="150000" id="cSST" oninput="cU()"></div>
+<div class="calc-f"><label>Progressão Lote (%)</label><input type="range" min="5" max="20" value="10" id="cLP" oninput="cU()"><div class="rv"><span>5%</span><span id="vLP">10%</span><span>20%</span></div></div></div></div>
+<div class="cd" style="padding:24px;margin-bottom:20px;"><div class="cd-l" style="margin-bottom:16px;">🏨 Custos</div>
+<div class="calc-g"><div class="calc-f"><label>Resort diárias</label><input type="number" value="928689" id="cRe" oninput="cU()"></div>
+<div class="calc-f"><label>Conta Mestra</label><input type="number" value="79899" id="cCM" oninput="cU()"></div>
+<div class="calc-f"><label>Som+Luz+Cenografia</label><input type="number" value="135694" id="cSC" oninput="cU()"></div>
+<div class="calc-f"><label>Staff+Equipe</label><input type="number" value="29880" id="cSf" oninput="cU()"></div>
+<div class="calc-f"><label>Kit Participantes</label><input type="number" value="43260" id="cKt" oninput="cU()"></div>
+<div class="calc-f"><label>Extras+Gráfica+AV</label><input type="number" value="95146" id="cEx" oninput="cU()"></div>
+<div class="calc-f"><label>🌊 Aquáticos</label><input type="number" value="65000" id="cAq" oninput="cU()"></div>
+<div class="calc-f"><label>% Deduções</label><input type="range" min="50" max="150" value="96" id="cDd" oninput="cU()"><div class="rv"><span>5%</span><span id="vDd">9.6%</span><span>15%</span></div></div></div></div>
+<div class="cd calc-res" id="cRC" style="padding:24px;"><div class="cd-l">📊 Resultado Personalizado</div><div id="cRes"></div></div></div></div>
 <script>
-// ===== TAB NAVIGATION =====
-function showTab(id, el) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  el.classList.add('active');
-}
-function toggleCheck(el) {
-  el.classList.toggle('checked');
-  const text = el.nextElementSibling;
-  if (text) text.classList.toggle('done');
-}
+const $=id=>document.getElementById(id);
+const F=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
+const P=v=>(v*100).toFixed(1)+'%';
+function tab(id,el){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));$(id).classList.add('on');el.classList.add('on');}
+function sw(p,id,el){document.querySelectorAll('#'+p+' > .sub').forEach(s=>s.classList.remove('on'));el.closest('.sn').querySelectorAll('button').forEach(b=>b.classList.remove('on'));$(p+'-'+id).classList.add('on');el.classList.add('on');}
 
-// ===== BACKLOG DATA =====
-const tasks = [
-  // FASE 1 — Planejamento Estratégico (Abr-Mai)
-  {id:1, task:"Confirmar data exata com Clara Resort", area:"estrategia", fase:"Fase 1", prazo:"Abr/1ª sem", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:2, task:"Definir orçamento geral do evento", area:"estrategia", fase:"Fase 1", prazo:"Abr/2ª sem", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:3, task:"Alinhar objetivos e KPIs (público, NPS, receita)", area:"estrategia", fase:"Fase 1", prazo:"Abr/2ª sem", prio:"alta", resp:"Core Team", status:"A fazer"},
-  {id:4, task:"Montar core team de produção", area:"estrategia", fase:"Fase 1", prazo:"Abr/2ª sem", prio:"alta", resp:"Liderança", status:"A fazer"},
-  {id:5, task:"Negociar pacote com resort (incluso infraestrutura aquática)", area:"logistica", fase:"Fase 1", prazo:"Abr-Mai", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:6, task:"Definir programação macro dos 3 dias", area:"conteudo", fase:"Fase 1", prazo:"Mai/1ª sem", prio:"alta", resp:"Core Team", status:"A fazer"},
-  {id:7, task:"Mapear fornecedores de esportes aquáticos (SUP, caiaque, etc.)", area:"esportes", fase:"Fase 1", prazo:"Mai/1ª sem", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:8, task:"Definir trilhas de conteúdo e iniciar curadoria de palestrantes", area:"conteudo", fase:"Fase 1", prazo:"Mai/2ª sem", prio:"alta", resp:"Conteúdo", status:"A fazer"},
-  {id:9, task:"Criar estratégia de precificação e lotes", area:"comercial", fase:"Fase 1", prazo:"Mai/2ª sem", prio:"alta", resp:"Comercial", status:"A fazer"},
-  {id:10, task:"Elaborar manual/protocolo de segurança aquática", area:"seguranca", fase:"Fase 1", prazo:"Mai", prio:"alta", resp:"Produção", status:"A fazer"},
+// BACKLOG
+const BL=[
+{id:1,t:"Confirmar data com Clara Resort",a:"estrategia",f:"F1",p:"Abr/1ª",pr:"alta",r:"Produção"},{id:2,t:"Definir orçamento geral",a:"estrategia",f:"F1",p:"Abr/2ª",pr:"alta",r:"Produção"},{id:3,t:"Alinhar KPIs",a:"estrategia",f:"F1",p:"Abr/2ª",pr:"alta",r:"Core Team"},{id:4,t:"Montar core team",a:"estrategia",f:"F1",p:"Abr/2ª",pr:"alta",r:"Liderança"},{id:5,t:"Negociar pacote resort + aquáticos",a:"logistica",f:"F1",p:"Abr-Mai",pr:"alta",r:"Produção"},{id:6,t:"Programação macro 3 dias",a:"conteudo",f:"F1",p:"Mai/1ª",pr:"alta",r:"Core Team"},{id:7,t:"Mapear fornecedores aquáticos",a:"esportes",f:"F1",p:"Mai/1ª",pr:"alta",r:"Produção"},{id:8,t:"Curadoria trilhas e palestrantes",a:"conteudo",f:"F1",p:"Mai/2ª",pr:"alta",r:"Conteúdo"},{id:9,t:"Estratégia precificação",a:"comercial",f:"F1",p:"Mai/2ª",pr:"alta",r:"Comercial"},{id:10,t:"Protocolo segurança aquática",a:"seguranca",f:"F1",p:"Mai",pr:"alta",r:"Produção"},
+{id:11,t:"KV e identidade visual",a:"comunicacao",f:"F2",p:"Jun/1ª",pr:"alta",r:"Design"},{id:12,t:"Página de vendas",a:"comercial",f:"F2",p:"Jun/1ª",pr:"alta",r:"Marketing"},{id:13,t:"Abrir Early Bird",a:"comercial",f:"F2",p:"Jun/2ª",pr:"alta",r:"Comercial"},{id:14,t:"Campanha aquecimento",a:"comunicacao",f:"F2",p:"Jun",pr:"media",r:"Marketing"},{id:15,t:"Confirmar palestrantes",a:"conteudo",f:"F2",p:"Jun-Jul",pr:"alta",r:"Conteúdo"},{id:16,t:"Contrato fornecedores aquáticos",a:"esportes",f:"F2",p:"Jun",pr:"alta",r:"Produção"},{id:17,t:"Visita técnica resort",a:"logistica",f:"F2",p:"Jul/1ª",pr:"alta",r:"Produção"},{id:18,t:"Transição Lote 1→2",a:"comercial",f:"F2",p:"Jul/2ª",pr:"media",r:"Comercial"},{id:19,t:"Grade hora a hora",a:"conteudo",f:"F2",p:"Jul",pr:"alta",r:"Conteúdo"},{id:20,t:"Chaves/times competições",a:"esportes",f:"F2",p:"Jul",pr:"media",r:"Esportes"},{id:21,t:"Contratar salva-vidas",a:"seguranca",f:"F2",p:"Jul",pr:"alta",r:"Produção"},{id:22,t:"Cardápio + turnos A/B",a:"logistica",f:"F2",p:"Jul",pr:"media",r:"Produção"},
+{id:23,t:"Materiais gráficos",a:"comunicacao",f:"F3",p:"Ago",pr:"media",r:"Design"},{id:24,t:"Grade conteúdo final",a:"conteudo",f:"F3",p:"Ago/1ª",pr:"alta",r:"Conteúdo"},{id:25,t:"Treinar equipe apoio",a:"logistica",f:"F3",p:"Ago-Set",pr:"media",r:"Produção"},{id:26,t:"Validar protocolo fornecedores",a:"seguranca",f:"F3",p:"Ago",pr:"alta",r:"Produção"},{id:27,t:"Briefing foto/vídeo/drone",a:"comunicacao",f:"F3",p:"Ago",pr:"media",r:"Marketing"},{id:28,t:"Contratar fotógrafo + drone",a:"comunicacao",f:"F3",p:"Ago",pr:"media",r:"Marketing"},{id:29,t:"GoPro aquáticas",a:"logistica",f:"F3",p:"Ago",pr:"baixa",r:"Produção"},{id:30,t:"Abrir Lote 2",a:"comercial",f:"F3",p:"Ago",pr:"media",r:"Comercial"},{id:31,t:"Dry run completo",a:"logistica",f:"F3",p:"Set/1ª",pr:"alta",r:"Core Team"},{id:32,t:"Plano B chuva",a:"logistica",f:"F3",p:"Set",pr:"alta",r:"Produção"},{id:33,t:"Testar equipamentos",a:"esportes",f:"F3",p:"Set",pr:"alta",r:"Fornecedor"},{id:34,t:"Guia do Participante",a:"comunicacao",f:"F3",p:"Set",pr:"alta",r:"Produção"},{id:35,t:"Placar ao vivo",a:"esportes",f:"F3",p:"Set",pr:"media",r:"Tech"},{id:36,t:"Restrições alimentares",a:"logistica",f:"F3",p:"Set",pr:"media",r:"Produção"},
+{id:37,t:"Deadline vendas D-15",a:"comercial",f:"F4",p:"Out/15",pr:"alta",r:"Comercial"},{id:38,t:"Enviar Guia D-15",a:"comunicacao",f:"F4",p:"Out/15",pr:"alta",r:"Produção"},{id:39,t:"Publicar chaves D-15",a:"esportes",f:"F4",p:"Out/15",pr:"alta",r:"Esportes"},{id:40,t:"Rooming list",a:"logistica",f:"F4",p:"Out/3ª",pr:"alta",r:"Produção"},{id:41,t:"Briefing final",a:"logistica",f:"F4",p:"Out/4ª",pr:"alta",r:"Core Team"},{id:42,t:"Montagem D-2",a:"logistica",f:"F4",p:"Nov D-2",pr:"alta",r:"Produção"},{id:43,t:"Teste AV+aquáticos D-2",a:"logistica",f:"F4",p:"Nov D-2",pr:"alta",r:"Produção"},{id:44,t:"Segurança D-1",a:"seguranca",f:"F4",p:"Nov D-1",pr:"alta",r:"Segurança"},{id:45,t:"Execução 3 dias",a:"logistica",f:"F4",p:"Nov",pr:"alta",r:"Todos"},
+{id:46,t:"Desmontagem D+1",a:"pos",f:"Pós",p:"Nov D+1",pr:"alta",r:"Produção"},{id:47,t:"NPS/CSAT D+7",a:"pos",f:"Pós",p:"Nov D+7",pr:"alta",r:"Marketing"},{id:48,t:"Debriefing D+15",a:"pos",f:"Pós",p:"Dez/1ª",pr:"alta",r:"Core Team"}];
+const AC={estrategia:'r',comercial:'a',conteudo:'p',logistica:'g',esportes:'c',comunicacao:'b',seguranca:'pk',pos:'a'};
+const AL={estrategia:'Estratégia',comercial:'Comercial',conteudo:'Conteúdo',logistica:'Logística',esportes:'Esportes',comunicacao:'Comunicação',seguranca:'Segurança',pos:'Pós-Evento'};
+function rBL(f){const d=f==='all'?BL:BL.filter(x=>x.a===f);$('blC').textContent=d.length+' tarefa'+(d.length!==1?'s':'');$('blB').innerHTML=d.map(x=>'<tr><td style="color:var(--dm);font-size:11px;">'+String(x.id).padStart(2,'0')+'</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:'+(x.pr==='alta'?'var(--red)':x.pr==='media'?'var(--am)':'var(--gr)')+'"></span>'+x.t+'</td><td><span class="t t-'+AC[x.a]+'">'+AL[x.a]+'</span></td><td style="font-size:11px;color:var(--mt);">'+x.f+'</td><td style="font-size:11px;">'+x.p+'</td><td style="font-size:11px;">'+x.pr.charAt(0).toUpperCase()+x.pr.slice(1)+'</td><td style="font-size:11px;color:var(--mt);">'+x.r+'</td></tr>').join('');}
+function fBL(f,el){$('blF').querySelectorAll('button').forEach(b=>b.classList.remove('on'));el.classList.add('on');rBL(f);}
+rBL('all');
 
-  // FASE 2 — Pré-Produção (Jun-Jul)
-  {id:11, task:"Criar KV e identidade visual da edição 2026", area:"comunicacao", fase:"Fase 2", prazo:"Jun/1ª sem", prio:"alta", resp:"Design", status:"A fazer"},
-  {id:12, task:"Lançar página de vendas / landing page", area:"comercial", fase:"Fase 2", prazo:"Jun/1ª sem", prio:"alta", resp:"Marketing", status:"A fazer"},
-  {id:13, task:"Abrir vendas Early Bird", area:"comercial", fase:"Fase 2", prazo:"Jun/2ª sem", prio:"alta", resp:"Comercial", status:"A fazer"},
-  {id:14, task:"Iniciar campanha de aquecimento (redes sociais)", area:"comunicacao", fase:"Fase 2", prazo:"Jun", prio:"media", resp:"Marketing", status:"A fazer"},
-  {id:15, task:"Confirmar palestrantes e painelistas", area:"conteudo", fase:"Fase 2", prazo:"Jun-Jul", prio:"alta", resp:"Conteúdo", status:"A fazer"},
-  {id:16, task:"Fechar contrato com fornecedores de atividades aquáticas", area:"esportes", fase:"Fase 2", prazo:"Jun", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:17, task:"Visita técnica ao Clara Resort (validar lago, piscina, áreas)", area:"logistica", fase:"Fase 2", prazo:"Jul/1ª sem", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:18, task:"Fechar Lote 1 e abrir Lote 2", area:"comercial", fase:"Fase 2", prazo:"Jul/2ª sem", prio:"media", resp:"Comercial", status:"A fazer"},
-  {id:19, task:"Detalhar programação hora a hora (3 dias)", area:"conteudo", fase:"Fase 2", prazo:"Jul", prio:"alta", resp:"Conteúdo", status:"A fazer"},
-  {id:20, task:"Planejar sistema de chaves/times para competições", area:"esportes", fase:"Fase 2", prazo:"Jul", prio:"media", resp:"Esportes", status:"A fazer"},
-  {id:21, task:"Contratar salva-vidas e instrutores aquáticos", area:"seguranca", fase:"Fase 2", prazo:"Jul", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:22, task:"Definir cardápio com resort (incluindo turnos A/B)", area:"logistica", fase:"Fase 2", prazo:"Jul", prio:"media", resp:"Produção", status:"A fazer"},
-
-  // FASE 3 — Produção Ativa (Ago-Set)
-  {id:23, task:"Produzir materiais gráficos (sinalização, crachás, placas)", area:"comunicacao", fase:"Fase 3", prazo:"Ago", prio:"media", resp:"Design", status:"A fazer"},
-  {id:24, task:"Confirmar toda a grade de conteúdo final", area:"conteudo", fase:"Fase 3", prazo:"Ago/1ª sem", prio:"alta", resp:"Conteúdo", status:"A fazer"},
-  {id:25, task:"Treinar equipe de apoio (voluntários, monitores)", area:"logistica", fase:"Fase 3", prazo:"Ago-Set", prio:"media", resp:"Produção", status:"A fazer"},
-  {id:26, task:"Validar protocolo de segurança aquática com fornecedores", area:"seguranca", fase:"Fase 3", prazo:"Ago", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:27, task:"Criar briefing para fotografia, vídeo e drone", area:"comunicacao", fase:"Fase 3", prazo:"Ago", prio:"media", resp:"Marketing", status:"A fazer"},
-  {id:28, task:"Contratar fotógrafo/drone para conteúdo aquático", area:"comunicacao", fase:"Fase 3", prazo:"Ago", prio:"media", resp:"Marketing", status:"A fazer"},
-  {id:29, task:"Comprar/alugar câmeras aquáticas (GoPro)", area:"logistica", fase:"Fase 3", prazo:"Ago", prio:"baixa", resp:"Produção", status:"A fazer"},
-  {id:30, task:"Abrir Lote 2 de vendas", area:"comercial", fase:"Fase 3", prazo:"Ago", prio:"media", resp:"Comercial", status:"A fazer"},
-  {id:31, task:"Simulação de agenda completa (dry run)", area:"logistica", fase:"Fase 3", prazo:"Set/1ª sem", prio:"alta", resp:"Core Team", status:"A fazer"},
-  {id:32, task:"Definir plano B para chuva (redirecionar indoor)", area:"logistica", fase:"Fase 3", prazo:"Set", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:33, task:"Testar equipamentos aquáticos no local", area:"esportes", fase:"Fase 3", prazo:"Set", prio:"alta", resp:"Fornecedor", status:"A fazer"},
-  {id:34, task:"Redigir Guia do Participante", area:"comunicacao", fase:"Fase 3", prazo:"Set", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:35, task:"Configurar sistema de placar ao vivo", area:"esportes", fase:"Fase 3", prazo:"Set", prio:"media", resp:"Tech", status:"A fazer"},
-  {id:36, task:"Levantar restrições alimentares dos inscritos", area:"logistica", fase:"Fase 3", prazo:"Set", prio:"media", resp:"Produção", status:"A fazer"},
-
-  // FASE 4 — Reta Final (Out-Nov)
-  {id:37, task:"Data limite vendas/trocas de ingresso (D-15)", area:"comercial", fase:"Fase 4", prazo:"Out/15", prio:"alta", resp:"Comercial", status:"A fazer"},
-  {id:38, task:"Enviar Guia do Participante (D-15)", area:"comunicacao", fase:"Fase 4", prazo:"Out/15", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:39, task:"Publicar chaves e regras dos jogos (D-15)", area:"esportes", fase:"Fase 4", prazo:"Out/15", prio:"alta", resp:"Esportes", status:"A fazer"},
-  {id:40, task:"Confirmar rooming list com resort", area:"logistica", fase:"Fase 4", prazo:"Out/3ª sem", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:41, task:"Briefing final de toda a equipe", area:"logistica", fase:"Fase 4", prazo:"Out/4ª sem", prio:"alta", resp:"Core Team", status:"A fazer"},
-  {id:42, task:"Montagem no resort (D-2): cenografia, AV, sinalização", area:"logistica", fase:"Fase 4", prazo:"Nov D-2", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:43, task:"Teste de som, projeção e equipamentos aquáticos (D-2)", area:"logistica", fase:"Fase 4", prazo:"Nov D-2", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:44, task:"Posicionar kit primeiros socorros e salva-vidas (D-1)", area:"seguranca", fase:"Fase 4", prazo:"Nov D-1", prio:"alta", resp:"Segurança", status:"A fazer"},
-  {id:45, task:"Execução do evento — 3 dias", area:"logistica", fase:"Fase 4", prazo:"Nov", prio:"alta", resp:"Todos", status:"A fazer"},
-
-  // PÓS-EVENTO
-  {id:46, task:"Desmontagem e check-out do resort (D+1)", area:"pos", fase:"Pós", prazo:"Nov D+1", prio:"alta", resp:"Produção", status:"A fazer"},
-  {id:47, task:"Enviar pesquisa NPS/CSAT (D+7)", area:"pos", fase:"Pós", prazo:"Nov D+7", prio:"alta", resp:"Marketing", status:"A fazer"},
-  {id:48, task:"Debriefing completo com core team (D+15)", area:"pos", fase:"Pós", prazo:"Dez/1ª sem", prio:"alta", resp:"Core Team", status:"A fazer"},
-];
-
-function renderBacklog(filter) {
-  const tbody = document.getElementById('backlogBody');
-  const filtered = filter === 'all' ? tasks : tasks.filter(t => t.area === filter);
-  document.getElementById('backlogCount').textContent = `Mostrando ${filtered.length} tarefa${filtered.length!==1?'s':''}`;
-  const areaColors = {estrategia:'red',comercial:'amber',conteudo:'purple',logistica:'green',esportes:'cyan',comunicacao:'blue',seguranca:'pink',pos:'amber'};
-  const areaLabels = {estrategia:'Estratégia',comercial:'Comercial',conteudo:'Conteúdo',logistica:'Logística',esportes:'Esportes',comunicacao:'Comunicação',seguranca:'Segurança',pos:'Pós-Evento'};
-  tbody.innerHTML = filtered.map(t => `<tr>
-    <td style="color:var(--text-dim);font-size:12px;">${String(t.id).padStart(2,'0')}</td>
-    <td><span class="priority-dot priority-${t.prio}"></span>${t.task}</td>
-    <td><span class="tag tag-${areaColors[t.area]}">${areaLabels[t.area]}</span></td>
-    <td style="font-size:12px;color:var(--text-muted);">${t.fase}</td>
-    <td style="font-size:12px;">${t.prazo}</td>
-    <td style="font-size:12px;"><span class="priority-dot priority-${t.prio}"></span>${t.prio.charAt(0).toUpperCase()+t.prio.slice(1)}</td>
-    <td style="font-size:12px;color:var(--text-muted);">${t.resp}</td>
-    <td><span class="tag tag-amber">${t.status}</span></td>
-  </tr>`).join('');
-}
-function filterBacklog(filter, btn) {
-  document.querySelectorAll('.backlog-filters .filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderBacklog(filter);
-}
-renderBacklog('all');
-
-// ===== GANTT CHART =====
-const months = ['Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-const currentMonthIdx = 0; // April = index 0
-
-const ganttTasks = [
-  // [label, color, startMonth(0=Apr), duration in months]
-  {cat:"ESTRATÉGIA", color:"#E31837", items:[
-    ["Definições macro & orçamento", 0, 1],
-    ["KPIs e objetivos", 0, 1],
-    ["Negociação com resort", 0, 2],
-  ]},
-  {cat:"COMERCIAL", color:"#FF9800", items:[
-    ["Estratégia de precificação", 1, 1],
-    ["Early Bird", 2, 1],
-    ["Lote 1", 3, 1],
-    ["Lote 2", 4, 2],
-    ["Último Lote + deadline D-15", 6, 1],
-  ]},
-  {cat:"CONTEÚDO", color:"#9C27B0", items:[
-    ["Curadoria de trilhas & palestrantes", 1, 3],
-    ["Programação macro 3 dias", 1, 1],
-    ["Programação hora a hora", 3, 1],
-    ["Confirmação grade final", 4, 1],
-    ["Mentorias & workshops definidos", 3, 2],
-  ]},
-  {cat:"COMUNICAÇÃO", color:"#2196F3", items:[
-    ["KV e identidade visual", 2, 1],
-    ["Campanha de aquecimento", 2, 3],
-    ["Materiais gráficos (crachás, placas)", 4, 2],
-    ["Briefing foto/vídeo/drone", 4, 1],
-    ["Guia do Participante", 5, 2],
-    ["Comunicação D-15 / D-7", 6, 1],
-    ["Pós-evento: fotos, NPS", 7, 1],
-  ]},
-  {cat:"ESPORTES & AQUÁTICOS", color:"#00BCD4", items:[
-    ["Mapear fornecedores aquáticos", 1, 1],
-    ["Contratar fornecedores", 2, 1],
-    ["Sistema de chaves/times", 3, 1],
-    ["Teste de equipamentos no local", 5, 1],
-    ["Placar ao vivo configurado", 5, 1],
-    ["Publicar regras e chaves (D-15)", 6, 1],
-  ]},
-  {cat:"LOGÍSTICA & OPERAÇÃO", color:"#4CAF50", items:[
-    ["Visita técnica ao resort", 3, 1],
-    ["Cardápio + turnos A/B", 3, 1],
-    ["Treinamento equipe de apoio", 4, 2],
-    ["Dry run (simulação)", 5, 1],
-    ["Plano B para chuva", 5, 1],
-    ["Rooming list + check-in escalonado", 6, 1],
-    ["Montagem no resort (D-2)", 7, 0.3],
-    ["Execução do evento (3 dias)", 7, 0.3],
-  ]},
-  {cat:"SEGURANÇA", color:"#E91E63", items:[
-    ["Protocolo de segurança aquática", 1, 1],
-    ["Contratar salva-vidas", 3, 1],
-    ["Validar protocolo com fornecedores", 4, 1],
-    ["Posicionar equipe e kits (D-1)", 7, 0.3],
-  ]},
-  {cat:"PÓS-EVENTO", color:"#607D8B", items:[
-    ["Desmontagem (D+1)", 7, 0.3],
-    ["Pesquisa NPS/CSAT (D+7)", 7, 0.5],
-    ["Debriefing completo (D+15)", 8, 0.5],
-  ]},
-];
-
-function renderGantt() {
-  const head = document.getElementById('ganttHead');
-  const body = document.getElementById('ganttBody');
-  
-  // Header
-  head.innerHTML = `<tr><th class="task-header">Frente / Tarefa</th>${months.map((m,i) =>
-    `<th${i===currentMonthIdx?' class="gantt-month-now"':''}>${m}</th>`
-  ).join('')}</tr>`;
-
-  let html = '';
-  ganttTasks.forEach(group => {
-    // Category header row
-    html += `<tr><td class="task-cell" style="font-weight:700;font-size:12px;letter-spacing:1px;color:${group.color};text-transform:uppercase;padding:14px 12px 6px;">${group.cat}</td>${months.map((_,i) => `<td class="gantt-cell${i===currentMonthIdx?' gantt-month-now':''}"></td>`).join('')}</tr>`;
-    
-    group.items.forEach(([label, start, dur]) => {
-      html += `<tr><td class="task-cell" style="padding-left:24px;font-size:12px;color:var(--text-muted);">› ${label}</td>`;
-      months.forEach((_,i) => {
-        const isNow = i === currentMonthIdx;
-        let barHtml = '';
-        if (i === Math.floor(start)) {
-          const offsetPct = (start - Math.floor(start)) * 100;
-          const widthCells = dur < 1 ? dur : dur;
-          const widthPct = widthCells * 100;
-          barHtml = `<div class="gantt-bar" style="left:${offsetPct}%;width:${widthPct}%;background:${group.color};"><div class="gantt-bar-label">${dur >= 1 ? label.substring(0,20) : ''}</div></div>`;
-        }
-        html += `<td class="gantt-cell${isNow?' gantt-month-now':''}">${barHtml}</td>`;
-      });
-      html += '</tr>';
-    });
-  });
-  body.innerHTML = html;
-}
+// GANTT (SVG)
+const MO=['Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const GD=[
+{c:'ESTRATÉGIA',cl:'#E31837',rows:[["Definições & orçamento",0,1],["KPIs",0,1],["Negociação resort",0,2]]},
+{c:'COMERCIAL',cl:'#FF9800',rows:[["Precificação",1,1],["Early Bird",2,1],["Lote 1",3,1],["Lote 2",4,2],["Último Lote",6,1]]},
+{c:'CONTEÚDO',cl:'#9C27B0',rows:[["Curadoria palestrantes",1,3],["Programação macro",1,1],["Grade hora a hora",3,1],["Confirmação final",4,1]]},
+{c:'COMUNICAÇÃO',cl:'#2196F3',rows:[["KV / identidade",2,1],["Campanha redes",2,3],["Materiais gráficos",4,2],["Guia Participante",5,2],["Comunicação D-15",6,1]]},
+{c:'ESPORTES',cl:'#00BCD4',rows:[["Mapear fornecedores",1,1],["Contratar",2,1],["Chaves/times",3,1],["Teste equipamentos",5,1],["Publicar regras",6,1]]},
+{c:'LOGÍSTICA',cl:'#4CAF50',rows:[["Visita técnica",3,1],["Cardápio+turnos",3,1],["Treinar equipe",4,2],["Dry run",5,1],["Rooming+check-in",6,1],["Montagem+Execução",7,1]]},
+{c:'SEGURANÇA',cl:'#E91E63',rows:[["Protocolo aquático",1,1],["Salva-vidas",3,1],["Validar fornecedores",4,1],["Posicionar equipe",7,0.5]]},
+{c:'PÓS',cl:'#607D8B',rows:[["Desmontagem",7,0.3],["NPS/CSAT",7,0.5],["Debriefing",8,0.5]]}];
+function renderGantt(){
+$('gL').innerHTML=GD.map(function(g){return '<span><i style="background:'+g.cl+';"></i>'+g.c+'</span>';}).join('');
+var LW=180,CW=90,HH=32,RH=28,P=4;var W=LW+MO.length*CW;var tR=0;GD.forEach(function(g){tR++;tR+=g.rows.length;});var H=HH+tR*RH+8;
+var s='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="font-family:DM Sans,sans-serif;display:block;min-width:'+W+'px;">';
+s+='<rect width="'+W+'" height="'+H+'" fill="#0A0A0A"/>';
+s+='<rect x="'+LW+'" y="0" width="'+CW+'" height="'+H+'" fill="rgba(227,24,55,0.05)"/>';
+for(var i=0;i<MO.length;i++){var x=LW+i*CW;s+='<line x1="'+x+'" y1="'+HH+'" x2="'+x+'" y2="'+H+'" stroke="#1a1a1a"/>';s+='<text x="'+(x+CW/2)+'" y="'+(HH-10)+'" text-anchor="middle" fill="'+(i===0?'#E31837':'#555')+'" font-size="10" font-weight="600" letter-spacing="1">'+MO[i].toUpperCase()+'</text>';}
+s+='<line x1="0" y1="'+HH+'" x2="'+W+'" y2="'+HH+'" stroke="#E31837" stroke-width="1.5"/>';
+var y=HH;
+GD.forEach(function(g){s+='<text x="8" y="'+(y+20)+'" fill="'+g.cl+'" font-size="10" font-weight="700" letter-spacing="1">'+g.c+'</text>';y+=RH;
+g.rows.forEach(function(r){var lbl=r[0],st=r[1],dur=r[2];s+='<line x1="0" y1="'+(y+RH)+'" x2="'+W+'" y2="'+(y+RH)+'" stroke="#1a1a1a" stroke-width=".5"/>';s+='<text x="20" y="'+(y+RH/2+4)+'" fill="#888" font-size="11">'+String.fromCharCode(8250)+' '+lbl+'</text>';var bx=LW+st*CW;var bw=Math.max(dur*CW,8);var by=y+P;var bh=RH-P*2;s+='<rect x="'+bx+'" y="'+by+'" width="'+bw+'" height="'+bh+'" rx="2" fill="'+g.cl+'" opacity="0.8"/>';if(bw>55){var txt=lbl.length>Math.floor(bw/7)?lbl.substring(0,Math.floor(bw/7)-1)+'…':lbl;s+='<text x="'+(bx+6)+'" y="'+(by+bh/2+4)+'" fill="#fff" font-size="9" font-weight="600">'+txt+'</text>';}y+=RH;});});
+s+='</svg>';$('gSVG').innerHTML=s;}
 renderGantt();
 
-// ===== FORECASTING =====
-const fmt = v => 'R$ ' + v.toLocaleString('pt-BR', {minimumFractionDigits:0, maximumFractionDigits:0});
-const pct = v => (v*100).toFixed(1) + '%';
+// FORECASTING
+var SC={otimista:{lb:'Otimista',pax:420,ing:390,s:8,d:152,tr:203,q:27},base:{lb:'Base',pax:400,ing:370,s:7,d:144,tr:193,q:26},conservador:{lb:'Conservador',pax:350,ing:320,s:6,d:125,tr:168,q:21}};
+var TK={single:{e:6930,l1:7623,l2:8385,l3:9224},double:{e:3465,l1:3812,l2:4193,l3:4612},triplo:{e:2970,l1:3267,l2:3594,l3:3953},quadruplo:{e:2475,l1:2723,l2:2995,l3:3294}};
+function aT(t){return t.e*.20+t.l1*.35+t.l2*.30+t.l3*.15;}
+function fc(k){var s=SC[k],pr=s.pax/376;var rS=s.s*aT(TK.single),rD=s.d*aT(TK.double),rT=s.tr*aT(TK.triplo),rQ=s.q*aT(TK.quadruplo);var rIng=rS+rD+rT+rQ,rSST=150000,rB=rIng+rSST;var ded=rIng*0.096,rL=rB-ded;var cR=859897*1.08*pr,cSL=67855*1.05,cCe=61520*1.05,cSt=24900*1.10,cKi=(38716/376)*s.pax*1.05,cEx=75872*1.10,cGr=9803*1.05,cAV=1020*1.50,cEq=2067*1.20,cCM=76094*pr*1.05;var cAq=45000,cSV=12000,cSeg=8000,tAq=65000;var cT=cR+cSL+cCe+cSt+cKi+cEx+cGr+cAV+cEq+cCM+tAq;var res=rL-cT;return{s:s,rS:rS,rD:rD,rT:rT,rQ:rQ,rIng:rIng,rSST:rSST,rB:rB,ded:ded,rL:rL,cR:cR,cSL:cSL,cCe:cCe,cSt:cSt,cKi:cKi,cEx:cEx,cGr:cGr,cAV:cAV,cEq:cEq,cCM:cCM,tAq:tAq,cAq:cAq,cSV:cSV,cSeg:cSeg,cT:cT,res:res,mar:res/rB,tm:rIng/s.ing,cpp:cT/s.pax};}
+function rFC(k){var d=fc(k);
+$('fK').innerHTML='<div class="cd"><div class="fc-kpi"><div class="n">'+d.s.pax+'</div><div class="l">PAX</div></div></div><div class="cd"><div class="fc-kpi"><div class="n">'+F(d.rB)+'</div><div class="l">Receita Bruta</div></div></div><div class="cd"><div class="fc-kpi"><div class="n">'+F(d.cT)+'</div><div class="l">Custo Total</div></div></div><div class="cd"><div class="fc-kpi"><div class="n" style="color:'+(d.res>=0?'var(--gr)':'var(--red)')+'">'+F(d.res)+'</div><div class="l">Resultado</div></div></div>';
+$('fR').innerHTML='<div class="fc-row hdr"><span>Receita</span><span>Valor</span></div><div class="fc-row"><span class="lb">Single ('+d.s.s+' un)</span><span class="vl">'+F(d.rS)+'</span></div><div class="fc-row"><span class="lb">Double ('+d.s.d+' un)</span><span class="vl">'+F(d.rD)+'</span></div><div class="fc-row"><span class="lb">Triplo ('+d.s.tr+' un)</span><span class="vl">'+F(d.rT)+'</span></div><div class="fc-row"><span class="lb">Quádruplo ('+d.s.q+' un)</span><span class="vl">'+F(d.rQ)+'</span></div><div class="fc-row stot"><span>Subtotal Ingressos</span><span class="vl">'+F(d.rIng)+'</span></div><div class="fc-row"><span class="lb">SST / Cotas</span><span class="vl">'+F(d.rSST)+'</span></div><div class="fc-row tot"><span>Receita Bruta</span><span class="vl">'+F(d.rB)+'</span></div><div class="fc-row" style="margin-top:6px;"><span class="lb">Ticket Médio</span><span class="vl">'+F(d.tm)+'</span></div>';
+$('fD').innerHTML='<div class="fc-row hdr"><span>Despesa</span><span>Valor</span></div><div class="fc-row"><span class="lb">Resort + Diárias</span><span class="vl">'+F(d.cR)+'</span></div><div class="fc-row"><span class="lb">Conta Mestra</span><span class="vl">'+F(d.cCM)+'</span></div><div class="fc-row"><span class="lb">Som + Iluminação</span><span class="vl">'+F(d.cSL)+'</span></div><div class="fc-row"><span class="lb">Cenografia</span><span class="vl">'+F(d.cCe)+'</span></div><div class="fc-row"><span class="lb">Staff</span><span class="vl">'+F(d.cSt)+'</span></div><div class="fc-row"><span class="lb">Kit Participantes</span><span class="vl">'+F(d.cKi)+'</span></div><div class="fc-row"><span class="lb">Extras+Gráfica+AV</span><span class="vl">'+F(d.cEx+d.cGr+d.cAV)+'</span></div><div class="fc-row"><span class="lb">Equipe Produção</span><span class="vl">'+F(d.cEq)+'</span></div><div class="fc-row" style="border-top:1px solid var(--cy);margin-top:6px;padding-top:10px;"><span class="lb" style="color:var(--cy);">🌊 Aquáticos</span><span class="vl">'+F(d.cAq)+'</span></div><div class="fc-row"><span class="lb" style="color:var(--cy);">🛟 Salva-vidas</span><span class="vl">'+F(d.cSV)+'</span></div><div class="fc-row"><span class="lb" style="color:var(--cy);">🔒 Seguro</span><span class="vl">'+F(d.cSeg)+'</span></div><div class="fc-row stot" style="border-top:1px solid var(--cy);"><span style="color:var(--cy);">Subtotal Aquáticos</span><span class="vl" style="color:var(--cy);">'+F(d.tAq)+'</span></div><div class="fc-row tot"><span>Custo Total</span><span class="vl">'+F(d.cT)+'</span></div><div class="fc-row" style="margin-top:6px;"><span class="lb">Custo/PAX</span><span class="vl">'+F(d.cpp)+'</span></div>';
+var rc=d.res>=0?'pos':'neg';$('fDRE').innerHTML='<div class="fc-row hdr"><span>DRE</span><span>Valor</span></div><div class="fc-row"><span class="lb">Receita Bruta</span><span class="vl">'+F(d.rB)+'</span></div><div class="fc-row neg"><span class="lb">(-) Deduções 9.6%</span><span class="vl">-'+F(d.ded)+'</span></div><div class="fc-row stot"><span>= Receita Líquida</span><span class="vl">'+F(d.rL)+'</span></div><div class="fc-row neg"><span class="lb">(-) Custos Totais</span><span class="vl">-'+F(d.cT)+'</span></div><div class="fc-row tot '+rc+'"><span>= Resultado</span><span class="vl">'+F(d.res)+'</span></div><div class="fc-row"><span class="lb">Margem</span><span class="vl" style="color:'+(d.mar>=0?'var(--gr)':'var(--red)')+'">'+P(d.mar)+'</span></div>';
+var cs=[{l:'Resort',v:d.cR,c:'#E31837'},{l:'Conta M.',v:d.cCM,c:'#B8132D'},{l:'Extras+AV',v:d.cEx+d.cGr+d.cAV,c:'#FF9800'},{l:'Som/Luz',v:d.cSL,c:'#9C27B0'},{l:'Cenografia',v:d.cCe,c:'#2196F3'},{l:'Aquáticos',v:d.tAq,c:'#00BCD4'},{l:'Kit',v:d.cKi,c:'#4CAF50'},{l:'Staff',v:d.cSt+d.cEq,c:'#607D8B'}];var mx=Math.max.apply(null,cs.map(function(c){return c.v;}));
+$('fB').innerHTML=cs.map(function(c){return '<div class="bar-row"><div class="bar-lbl">'+c.l+'</div><div class="bar-trk"><div class="bar-fill" style="width:'+(c.v/mx*100)+'%;background:'+c.c+';">'+(c.v/d.cT*100).toFixed(1)+'%</div></div></div>';}).join('');
+var t=TK;$('fI').innerHTML='<thead><tr><th>Tipo</th><th>Early</th><th>Lote 1</th><th>Lote 2</th><th>Lote 3</th><th>Tk Médio</th><th>Qtd</th><th>Receita</th></tr></thead><tbody><tr><td>Single</td><td>'+F(t.single.e)+'</td><td>'+F(t.single.l1)+'</td><td>'+F(t.single.l2)+'</td><td>'+F(t.single.l3)+'</td><td>'+F(aT(t.single))+'</td><td>'+d.s.s+'</td><td>'+F(d.rS)+'</td></tr><tr><td>Double</td><td>'+F(t.double.e)+'</td><td>'+F(t.double.l1)+'</td><td>'+F(t.double.l2)+'</td><td>'+F(t.double.l3)+'</td><td>'+F(aT(t.double))+'</td><td>'+d.s.d+'</td><td>'+F(d.rD)+'</td></tr><tr><td>Triplo</td><td>'+F(t.triplo.e)+'</td><td>'+F(t.triplo.l1)+'</td><td>'+F(t.triplo.l2)+'</td><td>'+F(t.triplo.l3)+'</td><td>'+F(aT(t.triplo))+'</td><td>'+d.s.tr+'</td><td>'+F(d.rT)+'</td></tr><tr><td>Quádruplo</td><td>'+F(t.quadruplo.e)+'</td><td>'+F(t.quadruplo.l1)+'</td><td>'+F(t.quadruplo.l2)+'</td><td>'+F(t.quadruplo.l3)+'</td><td>'+F(aT(t.quadruplo))+'</td><td>'+d.s.q+'</td><td>'+F(d.rQ)+'</td></tr><tr style="font-weight:700;border-top:2px solid var(--red);"><td>Total</td><td colspan="4"></td><td>'+F(d.tm)+'</td><td>'+d.s.ing+'</td><td style="color:var(--red);">'+F(d.rIng)+'</td></tr></tbody>';
+var r25={rB:1152613,cT:1219778,pax:376,tm:1152613/345,cpp:1219778/376};$('fC').innerHTML='<thead><tr><th>Métrica</th><th>2025</th><th>2026 '+d.s.lb+'</th><th>Δ</th></tr></thead><tbody><tr><td>PAX</td><td>'+r25.pax+'</td><td>'+d.s.pax+'</td><td style="color:var(--gr);">+'+((d.s.pax/r25.pax-1)*100).toFixed(0)+'%</td></tr><tr><td>Receita</td><td>'+F(r25.rB)+'</td><td>'+F(d.rB)+'</td><td style="color:var(--gr);">+'+((d.rB/r25.rB-1)*100).toFixed(0)+'%</td></tr><tr><td>Custo</td><td>'+F(r25.cT)+'</td><td>'+F(d.cT)+'</td><td>'+((d.cT/r25.cT-1)*100).toFixed(0)+'%</td></tr><tr><td>Ticket Médio</td><td>'+F(r25.tm)+'</td><td>'+F(d.tm)+'</td><td style="color:var(--gr);">+'+((d.tm/r25.tm-1)*100).toFixed(0)+'%</td></tr><tr><td>Custo/PAX</td><td>'+F(r25.cpp)+'</td><td>'+F(d.cpp)+'</td><td>'+((d.cpp/r25.cpp-1)*100).toFixed(0)+'%</td></tr><tr><td>Aquáticos</td><td>R$ 0</td><td>'+F(d.tAq)+'</td><td><span class="t t-c">Novo</span></td></tr></tbody>';}
+function setS(k,el){$('scN').querySelectorAll('button').forEach(function(b){b.classList.remove('on');});el.classList.add('on');rFC(k);}
+rFC('otimista');
 
-const scenarios = {
-  otimista: {
-    label: 'Otimista', pax: 420,
-    ingressos: 390, // vendidos (excl operação ~30)
-    single: 8, double: 152, triplo: 203, quadruplo: 27,
-  },
-  base: {
-    label: 'Base', pax: 400,
-    ingressos: 370,
-    single: 7, double: 144, triplo: 193, quadruplo: 26,
-  },
-  conservador: {
-    label: 'Conservador', pax: 350,
-    ingressos: 320,
-    single: 6, double: 125, triplo: 168, quadruplo: 21,
-  }
-};
-
-// Tickets 2026 = 2025 +10% (Early→Lote3 progression: Early, Lote1 +10%, Lote2 +20%, Lote3 +30%)
-const tickets = {
-  single:  { early:6930, l1:7700, l2:8085, l3:9779 },
-  double:  { early:3465, l1:3850, l2:4043, l3:4889 },
-  triplo:  { early:2970, l1:3300, l2:3465, l3:4193 },
-  quadruplo:{ early:2475, l1:2750, l2:2888, l3:3494 },
-};
-
-// Average ticket (weighted across lotes: 20% early, 35% l1, 30% l2, 15% l3)
-function avgTicket(type) {
-  const t = tickets[type];
-  return t.early*0.20 + t.l1*0.35 + t.l2*0.30 + t.l3*0.15;
-}
-
-// Cost structure based on 2025 actuals, scaled
-function calcScenario(key) {
-  const s = scenarios[key];
-  const paxRatio = s.pax / 376; // scale vs 2025
-
-  // RECEITA
-  const recSingle = s.single * avgTicket('single');
-  const recDouble = s.double * avgTicket('double');
-  const recTriplo = s.triplo * avgTicket('triplo');
-  const recQuad = s.quadruplo * avgTicket('quadruplo');
-  const recIngressos = recSingle + recDouble + recTriplo + recQuad;
-  const recSST = 150000; // patrocínio/cotas mantido
-  const recBruta = recIngressos + recSST;
-
-  // Deduções 9.6%
-  const deducoes = recIngressos * 0.096;
-  const recLiquida = recBruta - deducoes;
-
-  // CUSTOS (based on 2025 actuals, adjusted)
-  const custoResort = 859897 * 1.08 * paxRatio; // +8% inflação, proporcional PAX
-  const custoSomLuz = 67855 * 1.05; // +5%
-  const custoCenografia = 61520 * 1.05;
-  const custoStaff = 24900 * 1.10; // mais gente
-  const custoKitPart = (38716 / 376) * s.pax * 1.05; // proporcional + 5%
-  const custoExtras = 75872 * 1.10;
-  const custoGrafica = 9803 * 1.05;
-  const custoAV = 1020 * 1.50; // mais drone/gopro
-  const custoEquipe = 2067 * 1.20;
-  const custoContaMestra = 76094 * paxRatio * 1.05;
-  
-  // NOVO: Esportes Aquáticos
-  const custoAquaticos = 45000; // SUP, caiaque, infláveis, instrutores
-  const custoSalvaVidas = 12000; // 2 salva-vidas 3 dias
-  const custoSeguroAqua = 8000; // seguro + equipamentos
-  const totalAquaticos = custoAquaticos + custoSalvaVidas + custoSeguroAqua;
-
-  const custoTotal = custoResort + custoSomLuz + custoCenografia + custoStaff +
-    custoKitPart + custoExtras + custoGrafica + custoAV + custoEquipe +
-    custoContaMestra + totalAquaticos;
-
-  const resultado = recLiquida - custoTotal;
-  const margem = resultado / recBruta;
-  const ticketMedio = recIngressos / s.ingressos;
-  const custoPorPax = custoTotal / s.pax;
-
-  return {
-    s, recSingle, recDouble, recTriplo, recQuad, recIngressos, recSST, recBruta,
-    deducoes, recLiquida,
-    custoResort, custoSomLuz, custoCenografia, custoStaff, custoKitPart,
-    custoExtras, custoGrafica, custoAV, custoEquipe, custoContaMestra,
-    totalAquaticos, custoAquaticos, custoSalvaVidas, custoSeguroAqua,
-    custoTotal, resultado, margem, ticketMedio, custoPorPax
-  };
-}
-
-function renderForecast(key) {
-  const d = calcScenario(key);
-
-  // KPIs
-  document.getElementById('forecastKpis').innerHTML = `
-    <div class="card"><div class="forecast-kpi"><div class="num">${d.s.pax}</div><div class="lbl">PAX Total</div></div></div>
-    <div class="card"><div class="forecast-kpi"><div class="num">${fmt(d.recBruta)}</div><div class="lbl">Receita Bruta</div></div></div>
-    <div class="card"><div class="forecast-kpi"><div class="num">${fmt(d.custoTotal)}</div><div class="lbl">Custo Total</div></div></div>
-    <div class="card"><div class="forecast-kpi"><div class="num" style="color:${d.resultado>=0?'var(--accent-green)':'var(--red)'}">${fmt(d.resultado)}</div><div class="lbl">Resultado</div></div></div>
-  `;
-
-  // RECEITA
-  document.getElementById('forecastReceita').innerHTML = `
-    <div class="forecast-row header"><span>Receita</span><span>Valor</span></div>
-    <div class="forecast-row"><span class="label">Ingressos Single (${d.s.single} un × ${fmt(d.recSingle/d.s.single)} médio)</span><span class="value">${fmt(d.recSingle)}</span></div>
-    <div class="forecast-row"><span class="label">Ingressos Double (${d.s.double} un)</span><span class="value">${fmt(d.recDouble)}</span></div>
-    <div class="forecast-row"><span class="label">Ingressos Triplo (${d.s.triplo} un)</span><span class="value">${fmt(d.recTriplo)}</span></div>
-    <div class="forecast-row"><span class="label">Ingressos Quádruplo (${d.s.quadruplo} un)</span><span class="value">${fmt(d.recQuad)}</span></div>
-    <div class="forecast-row subtotal"><span>Subtotal Ingressos</span><span class="value">${fmt(d.recIngressos)}</span></div>
-    <div class="forecast-row"><span class="label">Receita SST / Cotas</span><span class="value">${fmt(d.recSST)}</span></div>
-    <div class="forecast-row total"><span>Receita Bruta Total</span><span class="value">${fmt(d.recBruta)}</span></div>
-    <div class="forecast-row" style="margin-top:8px;"><span class="label">Ticket Médio Ingresso</span><span class="value">${fmt(d.ticketMedio)}</span></div>
-  `;
-
-  // DESPESAS
-  document.getElementById('forecastDespesas').innerHTML = `
-    <div class="forecast-row header"><span>Despesa</span><span>Valor</span></div>
-    <div class="forecast-row"><span class="label">Locação Resort + Diárias</span><span class="value">${fmt(d.custoResort)}</span></div>
-    <div class="forecast-row"><span class="label">Conta Mestra Resort (extras)</span><span class="value">${fmt(d.custoContaMestra)}</span></div>
-    <div class="forecast-row"><span class="label">Sonorização + Iluminação</span><span class="value">${fmt(d.custoSomLuz)}</span></div>
-    <div class="forecast-row"><span class="label">Cenografia</span><span class="value">${fmt(d.custoCenografia)}</span></div>
-    <div class="forecast-row"><span class="label">Staff (árbitros, UTI, rádios)</span><span class="value">${fmt(d.custoStaff)}</span></div>
-    <div class="forecast-row"><span class="label">Kit Participantes</span><span class="value">${fmt(d.custoKitPart)}</span></div>
-    <div class="forecast-row"><span class="label">Extras (camisetas, bandeiras, medalhas, frete)</span><span class="value">${fmt(d.custoExtras)}</span></div>
-    <div class="forecast-row"><span class="label">Gráfica</span><span class="value">${fmt(d.custoGrafica)}</span></div>
-    <div class="forecast-row"><span class="label">Audiovisual (drone, GoPro)</span><span class="value">${fmt(d.custoAV)}</span></div>
-    <div class="forecast-row"><span class="label">Equipe Produção (reembolsos, passagens)</span><span class="value">${fmt(d.custoEquipe)}</span></div>
-    <div class="forecast-row" style="border-top:1px solid var(--accent-cyan); margin-top:8px; padding-top:12px;">
-      <span class="label" style="color:var(--accent-cyan);">🌊 Esportes Aquáticos (fornecedores)</span><span class="value">${fmt(d.custoAquaticos)}</span></div>
-    <div class="forecast-row"><span class="label" style="color:var(--accent-cyan);">🛟 Salva-vidas (2 profissionais, 3 dias)</span><span class="value">${fmt(d.custoSalvaVidas)}</span></div>
-    <div class="forecast-row"><span class="label" style="color:var(--accent-cyan);">🔒 Seguro + Equipamentos aquáticos</span><span class="value">${fmt(d.custoSeguroAqua)}</span></div>
-    <div class="forecast-row subtotal" style="border-top:1px solid var(--accent-cyan);"><span style="color:var(--accent-cyan);">Subtotal Aquáticos</span><span class="value" style="color:var(--accent-cyan);">${fmt(d.totalAquaticos)}</span></div>
-    <div class="forecast-row total"><span>Custo Total</span><span class="value">${fmt(d.custoTotal)}</span></div>
-    <div class="forecast-row" style="margin-top:8px;"><span class="label">Custo por PAX</span><span class="value">${fmt(d.custoPorPax)}</span></div>
-  `;
-
-  // DRE
-  const dreClass = d.resultado >= 0 ? 'positive' : 'negative';
-  document.getElementById('forecastDRE').innerHTML = `
-    <div class="forecast-row header"><span>DRE Simplificado</span><span>Valor</span></div>
-    <div class="forecast-row"><span class="label">Receita Bruta</span><span class="value">${fmt(d.recBruta)}</span></div>
-    <div class="forecast-row negative"><span class="label">(-) Deduções (checkout 3.6% + impostos 6%)</span><span class="value">-${fmt(d.deducoes)}</span></div>
-    <div class="forecast-row subtotal"><span>= Receita Líquida</span><span class="value">${fmt(d.recLiquida)}</span></div>
-    <div class="forecast-row negative"><span class="label">(-) Custos Totais</span><span class="value">-${fmt(d.custoTotal)}</span></div>
-    <div class="forecast-row ${dreClass}" style="font-size:11px;"><span class="label">&nbsp;&nbsp;&nbsp;dos quais: Aquáticos (novo)</span><span class="value">-${fmt(d.totalAquaticos)}</span></div>
-    <div class="forecast-row total ${dreClass}"><span>= Resultado</span><span class="value">${fmt(d.resultado)}</span></div>
-    <div class="forecast-row"><span class="label">Margem sobre Receita Bruta</span><span class="value" style="color:${d.margem>=0?'var(--accent-green)':'var(--red)'}">${pct(d.margem)}</span></div>
-  `;
-
-  // BARS
-  const costs = [
-    {label:'Resort (diárias)', val:d.custoResort, color:'#E31837'},
-    {label:'Conta Mestra', val:d.custoContaMestra, color:'#B8132D'},
-    {label:'Extras', val:d.custoExtras, color:'#FF9800'},
-    {label:'Som/Luz', val:d.custoSomLuz, color:'#9C27B0'},
-    {label:'Cenografia', val:d.custoCenografia, color:'#2196F3'},
-    {label:'Aquáticos 🌊', val:d.totalAquaticos, color:'#00BCD4'},
-    {label:'Kit Part.', val:d.custoKitPart, color:'#4CAF50'},
-    {label:'Staff', val:d.custoStaff, color:'#607D8B'},
-    {label:'Outros', val:d.custoGrafica+d.custoAV+d.custoEquipe, color:'#455A64'},
-  ];
-  const maxCost = Math.max(...costs.map(c=>c.val));
-  document.getElementById('forecastBars').innerHTML = costs.map(c => {
-    const w = (c.val / maxCost * 100);
-    const p = (c.val / d.custoTotal * 100).toFixed(1);
-    return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
-      <div style="width:100px;font-size:11px;color:var(--text-muted);text-align:right;flex-shrink:0;">${c.label}</div>
-      <div style="flex:1;position:relative;">
-        <div class="forecast-chart-bar" style="width:${w}%;background:${c.color};"><span class="bar-value">${p}% — ${fmt(c.val)}</span></div>
-      </div>
-    </div>`;
-  }).join('');
-
-  // RACIONAL INGRESSOS
-  const t = tickets;
-  document.getElementById('forecastIngressos').innerHTML = `
-    <thead><tr><th>Tipo</th><th>Early Bird</th><th>Lote 1 (+10%)</th><th>Lote 2 (+20%)</th><th>Lote 3 (+30%)</th><th>Ticket Médio</th><th>Qtd (${d.s.label})</th><th>Receita</th></tr></thead>
-    <tbody>
-      <tr><td>Exclusive Single</td><td>${fmt(t.single.early)}</td><td>${fmt(t.single.l1)}</td><td>${fmt(t.single.l2)}</td><td>${fmt(t.single.l3)}</td><td>${fmt(avgTicket('single'))}</td><td>${d.s.single}</td><td>${fmt(d.recSingle)}</td></tr>
-      <tr><td>Exclusive Double</td><td>${fmt(t.double.early)}</td><td>${fmt(t.double.l1)}</td><td>${fmt(t.double.l2)}</td><td>${fmt(t.double.l3)}</td><td>${fmt(avgTicket('double'))}</td><td>${d.s.double}</td><td>${fmt(d.recDouble)}</td></tr>
-      <tr><td>Exclusive Triplo</td><td>${fmt(t.triplo.early)}</td><td>${fmt(t.triplo.l1)}</td><td>${fmt(t.triplo.l2)}</td><td>${fmt(t.triplo.l3)}</td><td>${fmt(avgTicket('triplo'))}</td><td>${d.s.triplo}</td><td>${fmt(d.recTriplo)}</td></tr>
-      <tr><td>Exclusive Quádruplo</td><td>${fmt(t.quadruplo.early)}</td><td>${fmt(t.quadruplo.l1)}</td><td>${fmt(t.quadruplo.l2)}</td><td>${fmt(t.quadruplo.l3)}</td><td>${fmt(avgTicket('quadruplo'))}</td><td>${d.s.quadruplo}</td><td>${fmt(d.recQuad)}</td></tr>
-      <tr style="font-weight:700;border-top:2px solid var(--red);"><td>Total</td><td colspan="4"></td><td>${fmt(d.ticketMedio)}</td><td>${d.s.ingressos}</td><td style="color:var(--red);">${fmt(d.recIngressos)}</td></tr>
-    </tbody>
-  `;
-
-  // COMPARATIVO
-  const r25 = { recBruta:1152613, custoTotal:1219778, pax:376, resultado:1152613*0.904-1219778, ticketMedio:1152613/345 };
-  document.getElementById('forecastComparativo').innerHTML = `
-    <div class="table-wrap"><table>
-      <thead><tr><th>Métrica</th><th>2025 Realizado</th><th>2026 ${d.s.label}</th><th>Variação</th></tr></thead>
-      <tbody>
-        <tr><td>PAX</td><td>${r25.pax}</td><td>${d.s.pax}</td><td style="color:var(--accent-green);">+${((d.s.pax/r25.pax-1)*100).toFixed(0)}%</td></tr>
-        <tr><td>Receita Bruta</td><td>${fmt(r25.recBruta)}</td><td>${fmt(d.recBruta)}</td><td style="color:var(--accent-green);">+${((d.recBruta/r25.recBruta-1)*100).toFixed(0)}%</td></tr>
-        <tr><td>Custo Total</td><td>${fmt(r25.custoTotal)}</td><td>${fmt(d.custoTotal)}</td><td style="color:${d.custoTotal>r25.custoTotal?'var(--accent-amber)':'var(--accent-green)'};">${((d.custoTotal/r25.custoTotal-1)*100).toFixed(0)}%</td></tr>
-        <tr><td>Ticket Médio</td><td>${fmt(r25.ticketMedio)}</td><td>${fmt(d.ticketMedio)}</td><td style="color:var(--accent-green);">+${((d.ticketMedio/r25.ticketMedio-1)*100).toFixed(0)}%</td></tr>
-        <tr><td>Custo/PAX</td><td>${fmt(r25.custoTotal/r25.pax)}</td><td>${fmt(d.custoPorPax)}</td><td>${((d.custoPorPax/(r25.custoTotal/r25.pax)-1)*100).toFixed(0)}%</td></tr>
-        <tr><td>Custo Aquáticos</td><td>R$ 0</td><td>${fmt(d.totalAquaticos)}</td><td><span class="tag tag-cyan">Novo</span></td></tr>
-      </tbody>
-    </table></div>
-  `;
-}
-
-function setScenario(key, btn) {
-  document.querySelectorAll('.scenario-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderForecast(key);
-}
-renderForecast('otimista');
+// CALCULADORA
+function cU(){
+var pax=+$('cPax').value,pS=+$('cS').value/100,pD=+$('cD').value/100,pT=+$('cTr').value/100;
+var pQ=Math.max(0,1-pS-pD-pT);var prog=+$('cLP').value/100;var dedPct=+$('cDd').value/1000;
+$('vPax').textContent=pax;$('vS').textContent=(pS*100).toFixed(0)+'%';$('vD').textContent=(pD*100).toFixed(0)+'%';$('vTr').textContent=(pT*100).toFixed(0)+'%';$('vLP').textContent=(prog*100).toFixed(0)+'%';$('vDd').textContent=(dedPct*100).toFixed(1)+'%';
+var ing=Math.round(pax*0.925),nS=Math.round(ing*pS),nD=Math.round(ing*pD),nT=Math.round(ing*pT),nQ=Math.max(0,ing-nS-nD-nT);
+var tkSE=+$('cTS').value,tkDE=+$('cTD').value,tkTE=+$('cTT').value,tkQE=+$('cTQ').value,sst=+$('cSST').value;
+function avg(e){var l1=e*(1+prog),l2=l1*(1+prog),l3=l2*(1+prog);return e*.20+l1*.35+l2*.30+l3*.15;}
+var rS=nS*avg(tkSE),rD=nD*avg(tkDE),rT=nT*avg(tkTE),rQ=nQ*avg(tkQE),rIng=rS+rD+rT+rQ,rB=rIng+sst;
+var dedV=rIng*dedPct,rL=rB-dedV;
+var cR=+$('cRe').value*(pax/376),cCM=+$('cCM').value*(pax/376),cSC=+$('cSC').value,cSt=+$('cSf').value,cKi=+$('cKt').value*(pax/376),cEx=+$('cEx').value,cAq=+$('cAq').value;
+var cT=cR+cCM+cSC+cSt+cKi+cEx+cAq,res=rL-cT,mar=rB>0?res/rB:0;
+$('cK').innerHTML='<div class="cd"><div class="fc-kpi"><div class="n">'+pax+'</div><div class="l">PAX</div></div></div><div class="cd"><div class="fc-kpi"><div class="n">'+F(rB)+'</div><div class="l">Receita Bruta</div></div></div><div class="cd"><div class="fc-kpi"><div class="n">'+F(cT)+'</div><div class="l">Custo Total</div></div></div><div class="cd"><div class="fc-kpi"><div class="n" style="color:'+(res>=0?'var(--gr)':'var(--red)')+'">'+F(res)+'</div><div class="l">Resultado</div></div></div>';
+$('cRC').className='cd calc-res '+(res>=0?'ok':'nok');
+$('cRes').innerHTML='<div class="fc-row hdr"><span>DRE — Cenário Personalizado</span><span>Valor</span></div><div class="fc-row"><span class="lb">Receita Ingressos ('+ing+' vendidos)</span><span class="vl">'+F(rIng)+'</span></div><div class="fc-row"><span class="lb">&nbsp;&nbsp;↳ '+nS+' Single × '+F(avg(tkSE))+'</span><span class="vl">'+F(rS)+'</span></div><div class="fc-row"><span class="lb">&nbsp;&nbsp;↳ '+nD+' Double × '+F(avg(tkDE))+'</span><span class="vl">'+F(rD)+'</span></div><div class="fc-row"><span class="lb">&nbsp;&nbsp;↳ '+nT+' Triplo × '+F(avg(tkTE))+'</span><span class="vl">'+F(rT)+'</span></div><div class="fc-row"><span class="lb">&nbsp;&nbsp;↳ '+nQ+' Quádruplo × '+F(avg(tkQE))+'</span><span class="vl">'+F(rQ)+'</span></div><div class="fc-row"><span class="lb">SST / Cotas</span><span class="vl">'+F(sst)+'</span></div><div class="fc-row stot"><span>= Receita Bruta</span><span class="vl">'+F(rB)+'</span></div><div class="fc-row neg"><span class="lb">(-) Deduções '+(dedPct*100).toFixed(1)+'%</span><span class="vl">-'+F(dedV)+'</span></div><div class="fc-row stot"><span>= Receita Líquida</span><span class="vl">'+F(rL)+'</span></div><div class="fc-row neg"><span class="lb">(-) Resort + Conta Mestra</span><span class="vl">-'+F(cR+cCM)+'</span></div><div class="fc-row neg"><span class="lb">(-) Som/Luz/Cenografia</span><span class="vl">-'+F(cSC)+'</span></div><div class="fc-row neg"><span class="lb">(-) Staff + Kit + Extras</span><span class="vl">-'+F(cSt+cKi+cEx)+'</span></div><div class="fc-row neg"><span class="lb">(-) 🌊 Aquáticos</span><span class="vl">-'+F(cAq)+'</span></div><div class="fc-row tot '+(res>=0?'pos':'neg')+'"><span>= Resultado</span><span class="vl">'+F(res)+'</span></div><div class="fc-row"><span class="lb">Margem</span><span class="vl" style="color:'+(mar>=0?'var(--gr)':'var(--red)')+'">'+P(mar)+'</span></div><div class="fc-row"><span class="lb">Custo/PAX</span><span class="vl">'+F(cT/pax)+'</span></div><div class="fc-row"><span class="lb">Ticket Médio</span><span class="vl">'+F(ing>0?rIng/ing:0)+'</span></div><div class="fc-row"><span class="lb">% Quádruplo (auto)</span><span class="vl">'+(pQ*100).toFixed(0)+'%</span></div>';}
+cU();
 </script>
-</body>
-</html>
+</body></html>
